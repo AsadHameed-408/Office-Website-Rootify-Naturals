@@ -7,7 +7,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useNavigation } from '@react-navigation/native'
 
-const BackArrowAppBar = ({ title, addNavigationRouteName, isAddButtonVisible = false, isDownloadButtonVisible = false, onPressDownload }) => {
+const BackArrowAppBar = ({ isBackarrowVisible = true, title, addNavigationRouteName, isAddButtonVisible = false, isDownloadButtonVisible = false, onPressDownload }) => {
     const navigation = useNavigation();
 
     return (
@@ -24,33 +24,36 @@ const BackArrowAppBar = ({ title, addNavigationRouteName, isAddButtonVisible = f
         >
             {/* Left Side */}
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <TouchableOpacity
+                {isBackarrowVisible && <TouchableOpacity
                     activeOpacity={0.7}
                     style={styles.iconButton}
                     onPress={() => navigation.goBack()}
                 >
                     <MaterialIcons name='arrow-back' size={24} color={'#ffffff'} />
                 </TouchableOpacity>
+                }
 
                 <Text style={[styles.headerTitle, { marginLeft: 10 }]}>
                     {title}
                 </Text>
             </View>
-            {isDownloadButtonVisible == true && <TouchableOpacity
-                style={styles.wrhAddBtn}
-                activeOpacity={0.8}
-                onPress={onPressDownload}
-            >
-                <MaterialCommunityIcons name={'download'} size={24} color={'#fff'} />
-            </TouchableOpacity>}
-            {/* Right Side */}
-            {isAddButtonVisible == true && <TouchableOpacity
-                style={styles.wrhAddBtn}
-                activeOpacity={0.8}
-                onPress={() => navigation.navigate(addNavigationRouteName)}
-            >
-                <MaterialCommunityIcons name={'plus'} size={24} color={'#fff'} />
-            </TouchableOpacity>}
+            <View style={{ flexDirection: 'row' }}>
+                {isDownloadButtonVisible == true && <TouchableOpacity
+                    style={[styles.wrhAddBtn, { marginRight: 10 }]}
+                    activeOpacity={0.8}
+                    onPress={onPressDownload}
+                >
+                    <MaterialCommunityIcons name={'download'} size={24} color={'#fff'} />
+                </TouchableOpacity>}
+                {/* Right Side */}
+                {isAddButtonVisible == true && <TouchableOpacity
+                    style={styles.wrhAddBtn}
+                    activeOpacity={0.8}
+                    onPress={() => navigation.navigate(addNavigationRouteName)}
+                >
+                    <MaterialCommunityIcons name={'plus'} size={24} color={'#fff'} />
+                </TouchableOpacity>}
+            </View>
 
 
         </LinearGradient>

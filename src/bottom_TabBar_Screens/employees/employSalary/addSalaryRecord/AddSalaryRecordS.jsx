@@ -1,0 +1,197 @@
+import { StyleSheet } from "react-native";
+
+const as_styles = StyleSheet.create({
+    as_container: {
+        flex: 1,
+        backgroundColor: '#F8F9FA',
+    },
+    as_scroll: {
+        padding: 16,
+    },
+    as_header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    as_title: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: '#333',
+    },
+    as_card: {
+        backgroundColor: '#FFF',
+        borderRadius: 12,
+        padding: 16,
+        marginBottom: 16,
+        elevation: 2,
+        shadowColor: '#000',
+        shadowOpacity: 0.05,
+        shadowOffset: { width: 0, height: 2 },
+    },
+    as_sectionTitle: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: '#1ABC9C',
+        textTransform: 'uppercase',
+        marginBottom: 15,
+        letterSpacing: 0.5,
+    },
+    as_label: {
+        fontSize: 13,
+        fontWeight: '600',
+        color: '#666',
+        marginBottom: 6,
+    },
+    as_input: {
+        backgroundColor: '#F9FAFB',
+        borderWidth: 1,
+        borderColor: '#E0E0E0',
+        borderRadius: 8,
+        padding: 10,
+        fontSize: 14,
+        color: '#333',
+        marginBottom: 15,
+    },
+    as_inputRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: '#F9FAFB',
+        borderWidth: 1,
+        borderColor: '#E0E0E0',
+        borderRadius: 8,
+        padding: 10,
+        marginBottom: 15,
+    },
+    as_dropdownBtn: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: '#F9FAFB',
+        borderWidth: 1,
+        borderColor: '#E0E0E0',
+        borderRadius: 8,
+        padding: 10,
+        marginBottom: 15,
+    },
+    as_dropText: {
+        fontSize: 14,
+        color: '#444',
+    },
+    as_flexRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    as_totalCard: {
+        backgroundColor: '#34495E', // Matching your Filter theme
+    },
+    as_summaryRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 12,
+    },
+    as_sumLabel: {
+        color: '#BDC3C7',
+        fontSize: 14,
+    },
+    as_sumValue: {
+        color: '#FFF',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    as_paidInput: {
+        backgroundColor: 'rgba(255,255,255,0.1)',
+        borderRadius: 6,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        color: '#FFF',
+        width: 120,
+        textAlign: 'right',
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.2)',
+    },
+    as_netLabel: {
+        color: '#FFF',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    as_netValue: {
+        color: '#1ABC9C',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    as_footer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 10,
+        paddingBottom: 50,
+    },
+    as_cancelBtn: {
+        flex: 1,
+        padding: 15,
+        alignItems: 'center',
+    },
+    as_cancelTxt: {
+        color: '#888',
+        fontWeight: 'bold',
+    },
+    as_saveBtn: {
+        flex: 2,
+        backgroundColor: '#1ABC9C',
+        padding: 15,
+        borderRadius: 10,
+        alignItems: 'center',
+        elevation: 3,
+    },
+    as_saveTxt: {
+        color: '#FFF',
+        fontWeight: 'bold',
+        fontSize: 16,
+    },
+    container: {
+        backgroundColor: 'white',
+        width: '100%',
+    },
+    dropdown: {
+        height: 50,
+        borderColor: '#E0E0E0',
+        borderWidth: 1,
+        borderRadius: 8,
+        paddingHorizontal: 8,
+        backgroundColor: '#F9FAFB',
+    },
+    icon: {
+        marginRight: 10,
+    },
+    label: {
+        position: 'absolute',
+        backgroundColor: 'white',
+        left: 22,
+        top: 8,
+        zIndex: 999,
+        paddingHorizontal: 8,
+        fontSize: 12,
+        fontWeight: '600',
+        color: '#666',
+    },
+    placeholderStyle: {
+        fontSize: 14,
+        color: '#AAA',
+    },
+    selectedTextStyle: {
+        fontSize: 14,
+        color: '#333',
+    },
+    iconStyle: {
+        width: 20,
+        height: 20,
+    },
+    inputSearchStyle: {
+        height: 40,
+        fontSize: 14,
+        borderRadius: 8,
+    },
+});
+export default as_styles

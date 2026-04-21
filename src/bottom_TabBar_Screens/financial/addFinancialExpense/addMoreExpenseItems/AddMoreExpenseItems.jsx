@@ -1,73 +1,74 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, ScrollView, TouchableOpacity, Image, Modal } from 'react-native';
+import {
+    View,
+    Text,
+    TextInput,
+    ScrollView,
+    TouchableOpacity,
+    StyleSheet, // Import missing StyleSheet
+    Modal
+} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Dropdown } from 'react-native-element-dropdown';
-
-// Custom Components & Styles
-import BackArrowAppBar from '../../../../widgets/backarrow_appbar/BackArrowAppBar';
-import styles from './AddMoreExpenseItemsStyle';
-import CColors from '../../../../constants/CColors';
 import LinearGradient from 'react-native-linear-gradient';
-import TransactionModal from './Modal';
+import styles from './AddMoreExpenseItemsStyle'
+
+// Custom Components
+import BackArrowAppBar from '../../../../widgets/backarrow_appbar/BackArrowAppBar';
+import CColors from '../../../../constants/CColors';
 
 const AddMoreExpenseItems = () => {
-
-
-    // Store/Warehouse States
+    // States
     const [warehouseValue, setWarehouseValue] = useState(null);
     const [isWarehouseFocus, setWarehouseFocus] = useState(false);
-    // Payment Mode
+
     const [paymentModeValue, setPaymentModeValue] = useState(null);
     const [isPaymentModeFocus, setPaymentModeFocus] = useState(false);
 
-    // Form Inputs
-    const [warehouseName, setWarehouseName] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    // Modal Visibility States
+    const [amount, setAmount] = useState('');
+    const [comment, setComment] = useState('');
     const [isModalVisible, setModalVisible] = useState(false);
 
-
-    // --- 2. Data Lists ---
+    // Data Lists
     const wareHouseList = [
-        { label: 'All Warehouses', value: '1' },
-        { label: 'EL', value: '2' },
-        { label: 'Explore Traders', value: '3' },
-        { label: 'Falak Traders', value: '4' },
-        { label: 'Taimoor Traders', value: '5' },
+        { label: 'Explore Traders', value: '1' },
+        { label: 'Falak Traders', value: '2' },
+        { label: 'Taimoor Traders', value: '3' },
     ];
+
     const paymentModeList = [
-        { label: 'All Warehouses', value: '1' },
-        { label: 'EL', value: '2' },
-        { label: 'Explore Traders', value: '3' },
-        { label: 'Falak Traders', value: '4' },
-        { label: 'Taimoor Traders', value: '5' },
+        { label: 'Cash', value: 'cash' },
+        { label: 'Bank Transfer', value: 'bank' },
+        { label: 'Cheque', value: 'cheque' },
     ];
-
-
 
     return (
         <View style={{ flex: 1, backgroundColor: '#fff' }}>
             <BackArrowAppBar title={'Add Expense Items'} />
 
             <ScrollView style={styles.body} showsVerticalScrollIndicator={false}>
-                {/* image picker */}
-                <TouchableOpacity style={styles.imagePickerContainer} activeOpacity={0.7} onPress={() => {
-                    setModalVisible(true)
-                }}>
+
+                {/* Image Picker Placeholder */}
+                <TouchableOpacity
+                    style={styles.imagePickerContainer}
+                    activeOpacity={0.7}
+                    onPress={() => setModalVisible(true)}
+                >
                     <MaterialCommunityIcons name={'plus'} size={60} color={'#D9D9D9'} />
                     <Text style={styles.imagePickerText}>Upload Receipt Image</Text>
                 </TouchableOpacity>
-                {/* 2. Shopify Store Dropdown */}
+
+                {/* Warehouse Dropdown */}
                 <Text style={styles.label}>Warehouse*</Text>
                 <Dropdown
-                    style={[styles.dropdown, isWarehouseFocus && { borderColor: 'blue' }]}
+                    style={[styles.dropdown, isWarehouseFocus && { borderColor: '#3f5189' }]}
                     placeholderStyle={styles.placeholderStyle}
                     selectedTextStyle={styles.selectedTextStyle}
                     data={wareHouseList}
                     maxHeight={300}
                     labelField="label"
                     valueField="value"
-                    placeholder={!isWarehouseFocus ? wareHouseList[0].label : wareHouseList[0].label}
+                    placeholder="Select Warehouse"
                     value={warehouseValue}
                     onFocus={() => setWarehouseFocus(true)}
                     onBlur={() => setWarehouseFocus(false)}
@@ -76,138 +77,100 @@ const AddMoreExpenseItems = () => {
                         setWarehouseFocus(false);
                     }}
                 />
-                <View style={{ flexDirection: 'row' }}>
-                    <View style={{ flex: 1, marginRight: 5 }}>
+
+                <View style={{ flexDirection: 'row', gap: 10 }}>
+                    {/* Payment Mode */}
+                    <View style={{ flex: 1 }}>
                         <Text style={styles.label}>Payment Mode*</Text>
                         <Dropdown
-                            style={[styles.dropdown, isPaymentModeFocus && { borderColor: 'blue' }]}
+                            style={[styles.dropdown, isPaymentModeFocus && { borderColor: '#3f5189' }]}
                             placeholderStyle={styles.placeholderStyle}
                             selectedTextStyle={styles.selectedTextStyle}
                             data={paymentModeList}
-                            maxHeight={300}
                             labelField="label"
                             valueField="value"
-                            placeholder={!isPaymentModeFocus ? 'Payment Mode' : ''}
-                            value={warehouseValue}
+                            placeholder="Mode"
+                            value={paymentModeValue}
                             onFocus={() => setPaymentModeFocus(true)}
                             onBlur={() => setPaymentModeFocus(false)}
                             onChange={item => {
                                 setPaymentModeValue(item.value);
-                                setPaymentModeFocus(false)
+                                setPaymentModeFocus(false);
                             }}
                         />
                     </View>
-                    <View style={{ flex: 1, marginLeft: 5 }}>
+
+                    {/* Amount Input */}
+                    <View style={{ flex: 1 }}>
                         <Text style={styles.label}>Amount*</Text>
                         <View style={styles.inputContainer}>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Amount"
+                                placeholder="0.00"
+                                keyboardType="numeric"
                                 placeholderTextColor={"#D9D9D9"}
-                                value={warehouseName}
-                                onChangeText={setWarehouseName}
+                                value={amount}
+                                onChangeText={setAmount}
                             />
                         </View>
                     </View>
                 </View>
-                {/* 3. Name Input */}
+
+                {/* Comments Input */}
                 <Text style={styles.label}>Comments</Text>
-                <View style={[styles.inputContainer, { height: 100, alignItems: 'flex-start' }]}>
+                <View style={[styles.inputContainer, { height: 100 }]}>
                     <TextInput
-                        style={[styles.input, { textAlignVertical: 'top', }]}
-                        placeholder="Comments"
+                        style={[styles.input, { textAlignVertical: 'top', padding: 10 }]}
+                        placeholder="Add some notes..."
                         placeholderTextColor={"#D9D9D9"}
                         multiline={true}
                         numberOfLines={4}
-                        value={warehouseName}
-                        onChangeText={setWarehouseName}
+                        value={comment}
+                        onChangeText={setComment}
                     />
                 </View>
-                <TouchableOpacity activeOpacity={0.7}>
+
+                {/* Save Button */}
+                <TouchableOpacity activeOpacity={0.8} onPress={() => console.log('Saving...')}>
                     <LinearGradient
                         start={{ x: 0, y: 0 }}
                         end={{ x: 1, y: 0 }}
-                        colors={CColors.gradient}
+                        colors={CColors.gradient || ['#18b5a1', '#3f5189']}
                         style={styles.confirmBtn}
-                        onPress={() => { }}
                     >
-                        <Text style={styles.btnText}>Save Brand</Text>
+                        <Text style={styles.btnText}>Add Expense Item</Text>
                     </LinearGradient>
                 </TouchableOpacity>
-                {/* Bottom Spacer */}
-                <View style={{ height: 100 }} />
+
+                <View style={{ height: 50 }} />
             </ScrollView>
 
-            <View>
-                <Modal
-                    visible={isModalVisible}
-                    transparent={true}
-                    animationType="slide">
-                    <View
-                        style={styles.modalContainer}>
-                        <View
-                            style={styles.modalBotomContainer}>
-                            <TouchableOpacity
-                                activeOpacity={0.4}
-                                onPress={() => { }}
-                                style={{
-                                    width: '95%',
-                                    borderRadius: 0,
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    borderColor: '#ddd',
-                                    borderBottomWidth: 0,
-                                    borderRadius: 5,
-                                    bottom: 0,
-                                    marginBottom: 10,
-                                    marginTop: 10,
-                                }}>
-                                <Text style={{ margin: 10 }}>From Gallery</Text>
-                            </TouchableOpacity>
-                            <View style={{ backgroundColor: '#D9D9D9', height: 1, width: '90%' }} />
-                            <TouchableOpacity
-                                activeOpacity={0.4}
-                                onPress={() => { }}
-                                style={{
-                                    width: '95%',
-                                    borderRadius: 0,
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    borderColor: '#ddd',
-                                    borderBottomWidth: 0,
-                                    borderRadius: 5,
-                                    bottom: 0,
-                                    marginBottom: 10,
-                                    marginTop: 10,
-                                }}>
-                                <Text style={{ margin: 10 }}>Take Picture</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.modalBotomContainer}>
-                            <TouchableOpacity
-                                activeOpacity={0.9}
-                                onPress={() => { setModalVisible(false) }}
-                                style={{
-                                    width: '95%',
-                                    borderRadius: 0,
-                                    alignItems: 'center',
-                                    backgroundColor: 'white',
-                                    justifyContent: 'center',
-                                    borderColor: '#ddd',
-                                    borderBottomWidth: 0,
-                                    borderRadius: 5,
-                                    bottom: 0,
-                                    marginBottom: 10,
-                                    marginTop: 10,
-                                }}>
-                                <Text style={{ margin: 5, fontWeight: 'bold' }}>Cancel</Text>
-                            </TouchableOpacity>
-                        </View>
+            {/* Image Picker Modal */}
+            <Modal visible={isModalVisible} transparent={true} animationType="slide">
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalBottomContainer}>
+                        <TouchableOpacity style={styles.modalOption} onPress={() => { }}>
+                            <Text>From Gallery</Text>
+                        </TouchableOpacity>
+                        <View style={styles.separator} />
+                        <TouchableOpacity style={styles.modalOption} onPress={() => { }}>
+                            <Text>Take Picture</Text>
+                        </TouchableOpacity>
                     </View>
-                </Modal>
-            </View>
+
+                    <View style={styles.modalBottomContainer}>
+                        <TouchableOpacity
+                            style={styles.modalOption}
+                            onPress={() => setModalVisible(false)}
+                        >
+                            <Text style={{ fontWeight: 'bold', color: 'red' }}>Cancel</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
         </View>
     );
 };
 
-export default AddMoreExpenseItems
+
+export default AddMoreExpenseItems;

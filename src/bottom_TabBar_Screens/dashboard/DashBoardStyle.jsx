@@ -1,99 +1,86 @@
 import { Dimensions, StyleSheet } from "react-native";
 const size = Dimensions.get('screen')
-const DashBoardStyle = StyleSheet.create({
+
+const style = StyleSheet.create({
+    mainContainer: { flex: 1, backgroundColor: '#f1f5f9' },
     HeaderContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingHorizontal: 15,
-        paddingTop: 40,
-        height: 90,
+        paddingTop: 30,
+        height: 80,
         elevation: 5,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
     },
     headerTitle: {
         flex: 1,
-        fontSize: 20,
-        fontWeight: '700',
+        fontSize: 18,
+        fontWeight: 'bold',
         color: '#fff',
         marginLeft: 10,
     },
-    rightIconsContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    iconButton: {
-        padding: 8,
-        marginHorizontal: 2,
-    },
+    rightIconsContainer: { flexDirection: 'row', alignItems: 'center' },
+    iconButton: { padding: 5 },
     profileImageContainer: {
-        backgroundColor: '#ffffff',
+        backgroundColor: '#fff',
         width: 34,
         height: 34,
         borderRadius: 17,
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 8,
-        borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.3)',
+        marginLeft: 10,
     },
-    // body design
+    filterWrapper: {
+        flexDirection: 'row',
+        paddingHorizontal: 10,
+        paddingVertical: 15,
+    },
+    dropdownBox: { flex: 1, paddingHorizontal: 5 },
+    dropdown: {
+        height: 45,
+        borderRadius: 10,
+        paddingHorizontal: 12,
+        backgroundColor: 'white',
+        elevation: 2,
+    },
+    placeholderStyle: { fontSize: 14, color: '#94a3b8' },
+    selectedTextStyle: { fontSize: 14, color: '#1e293b' },
+    listWrapper: { paddingHorizontal: 10 },
     cardContainer: {
         backgroundColor: '#fff',
         flex: 1,
-        margin: 4,
-        padding: 12,
-        borderRadius: 8,
+        margin: 6,
+        padding: 15,
+        borderRadius: 15,
+        elevation: 3,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+    },
+    cardTitle: {
+        fontSize: 13,
+        fontWeight: '600',
+        color: '#64748b',
+        marginBottom: 10,
+    },
+    cardBottomRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    cardValue: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        color: '#1e293b',
+        flexShrink: 1,
     },
     cardIconContainer: {
+        width: 35,
+        height: 35,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 8,
-        borderRadius: 8
+        borderRadius: 10,
     },
-    body: {
-        paddingHorizontal: 8,
-
-    },
-    //  dropdown design
-    container: {
-        flex: 1,
-        paddingHorizontal: 4,
-        paddingVertical: 8,
-    },
-    dropdown: {
-        height: 40,
-        borderRadius: 8,
-        paddingHorizontal: 8,
-        backgroundColor: 'white',
-    },
-    icon: {
-        marginRight: 5,
-    },
-    label: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        left: 22,
-        top: 8,
-        zIndex: 999,
-        paddingHorizontal: 8,
-        fontSize: 14,
-    },
-    placeholderStyle: {
-        fontSize: 16,
-    },
-    selectedTextStyle: {
-        fontSize: 16,
-    },
-    iconStyle: {
-        width: 20,
-        height: 20,
-    },
-    inputSearchStyle: {
-        height: 40,
-        fontSize: 16,
-    },
-})
-export default DashBoardStyle
+});
+export default style

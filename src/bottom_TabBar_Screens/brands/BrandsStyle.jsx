@@ -1,88 +1,52 @@
 import { StyleSheet } from "react-native";
-
 const styles = StyleSheet.create({
-    body: {
-        paddingHorizontal: 15
-    },
-    // add and search feild
-    wrhMainContainer: {
-        flex: 1,
-        backgroundColor: '#f8f9fa',
-    },
-    wrhBodyWrapper: {
-        paddingHorizontal: 15,
-    },
-    wrhSearchRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginVertical: 15,
-        justifyContent: 'space-between',
-    },
+    wrhMainContainer: { flex: 1, backgroundColor: '#F4F7F9' },
+    wrhBodyWrapper: { paddingHorizontal: 15 },
+    wrhSearchRow: { flexDirection: 'row', alignItems: 'center', marginVertical: 12 },
     wrhInputContainer: {
         flex: 1,
         flexDirection: 'row',
         borderColor: '#D9D9D9',
         borderWidth: 1,
-        borderRadius: 8,
-        height: 50,
+        borderRadius: 10,
+        height: 46,
         alignItems: 'center',
         backgroundColor: '#fff',
     },
-    wrhInputField: {
-        flex: 1,
-        paddingHorizontal: 12,
-        color: '#000',
-    },
-    wrhVerticalDivider: {
-        width: 1,
-        backgroundColor: '#D9D9D9',
-        height: '60%',
-    },
-    wrhFilterIcon: {
-        marginHorizontal: 10,
-    },
-    wrhAddBtn: {
-        backgroundColor: '#18b5a1',
-        borderRadius: 8,
-        height: 50,
-        width: 50,
+    wrhInputField: { flex: 1, paddingHorizontal: 15, fontSize: 14, color: '#333' },
+    wrhSearchBtn: {
+        backgroundColor: '#1ABC9C',
+        borderRadius: 10,
+        height: 46,
+        width: 46,
         marginLeft: 10,
         alignItems: 'center',
         justifyContent: 'center',
         elevation: 2,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
     },
-
-    // Warehouse Card
+    wrhListContent: { paddingBottom: 20 },
     wrhCard: {
         backgroundColor: '#fff',
         borderRadius: 12,
-        padding: 15,
+        padding: 12,
         marginHorizontal: 15,
         marginBottom: 12,
-        elevation: 3,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        flexDirection: 'row',
-        alignItems: 'center',
+        elevation: 2,
     },
-    wrhListContentText: { color: '#555', marginBottom: 2 },
-    status: {
-        backgroundColor: '#fff',
-        borderRadius: 50,
-        padding: 3,
-        elevation: 3,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        alignItems: 'center',
-        flexDirection: 'row',
-    }
-})
+    cardMainContent: { flexDirection: 'row' },
+    rowBetween: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+    brandTitle: { fontSize: 13, fontWeight: '700', color: '#2C3E50', marginBottom: 4 },
+    infoRow: { flexDirection: 'row', alignItems: 'center' },
+    labelTxt: { fontSize: 11, fontWeight: '700', color: '#7F8C8D' },
+    valueTxt: { fontSize: 12, color: '#34495E', fontWeight: '500' },
+    brandImage: { width: 45, height: 45, borderRadius: 6, backgroundColor: '#FDF2E9' },
+    horizontalDivider: { height: 1, backgroundColor: '#F0F0F0', marginVertical: 10 },
+    statusSection: { flexDirection: 'row', alignItems: 'center' },
+    statusBadge: { paddingHorizontal: 8, paddingVertical: 2, borderRadius: 4, marginLeft: 5 },
+    statusTxt: { fontSize: 10, color: 'white', fontWeight: 'bold' },
+    switchStyle: { transform: [{ scaleX: 0.7 }, { scaleY: 0.7 }], marginLeft: 2 },
+    actionContainer: { flexDirection: 'row' },
+    actionBtn: { borderRadius: 6, height: 32, width: 32, alignItems: 'center', justifyContent: 'center', marginLeft: 8 }
+});
 
 export default styles

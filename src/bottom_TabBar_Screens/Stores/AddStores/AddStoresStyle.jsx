@@ -4,34 +4,38 @@ const styles = StyleSheet.create({
         padding: 20
     },
     label: {
-        fontSize: 16,
-        fontWeight: '500',
+        fontSize: 14,
+        fontWeight: '600',
+        color: '#333',
+        marginTop: 5,
     },
     inputContainer: {
         borderColor: '#D9D9D9',
         borderWidth: 1,
         borderRadius: 8,
-        height: 45,
+        height: 48,
         marginBottom: 15,
-        marginTop: 5,
+        marginTop: 8,
+        paddingHorizontal: 12,
+        backgroundColor: '#fff',
     },
     input: {
         flex: 1,
-        borderRadius: 8,
         color: 'black',
+        fontSize: 15,
     },
-    // button
     confirmBtn: {
-        height: 45,
+        height: 48,
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',
         marginVertical: 20,
+        elevation: 2,
     },
     btnText: {
         color: 'white',
         fontSize: 16,
-        fontWeight: '500',
+        fontWeight: 'bold',
     }
-})
+});
 export default styles;

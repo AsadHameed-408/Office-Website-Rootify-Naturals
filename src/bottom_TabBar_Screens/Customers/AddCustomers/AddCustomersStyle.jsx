@@ -1,78 +1,66 @@
 import { StyleSheet } from 'react-native'
+
 const styles = StyleSheet.create({
-    body: {
-        padding: 20
-    },
+    mainContainer: { flex: 1, backgroundColor: '#F8FAFC' },
+    body: { paddingHorizontal: 20 },
+    fieldWrapper: { marginBottom: 12 },
+    row: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 },
     label: {
-        fontSize: 16,
-        fontWeight: '500',
+        fontSize: 13,
+        fontWeight: '700',
+        color: '#64748B',
+        marginBottom: 6,
+        marginTop: 10,
+        textTransform: 'uppercase',
+        letterSpacing: 0.5
     },
     inputContainer: {
-        borderColor: '#D9D9D9',
-        borderWidth: 1,
-        borderRadius: 8,
-        height: 45,
-        marginBottom: 15,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderColor: '#E2E8F0',
+        borderWidth: 1.5,
+        borderRadius: 12,
+        height: 52,
+        backgroundColor: '#fff',
+    },
+    activeBorder: {
+        borderColor: '#18b5a1',
+        backgroundColor: '#F0FDFA', // Light tint on focus
+    },
+    iconBox: {
+        paddingLeft: 12,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     input: {
         flex: 1,
-        borderRadius: 8,
-        color: 'black',
-    },
-    //  dropdown design
-    container: {
-        flex: 1,
-        paddingHorizontal: 4,
-        paddingVertical: 8,
+        paddingHorizontal: 12,
+        fontSize: 14,
+        color: '#1E293B',
+        fontWeight: '500'
     },
     dropdown: {
-        height: 45,
-        borderRadius: 8,
-        paddingHorizontal: 8,
-        // backgroundColor: 'white',
-        borderColor: '#D9D9D9',
-        borderWidth: 1,
-        marginVertical: 10
-    },
-    icon: {
-        marginRight: 5,
-    },
-    dropdownlabel: {
-        position: 'absolute',
+        height: 52,
+        borderRadius: 12,
+        paddingHorizontal: 12,
         backgroundColor: 'white',
-        left: 22,
-        top: 8,
-        zIndex: 999,
-        paddingHorizontal: 8,
-        fontSize: 14,
+        borderColor: '#E2E8F0',
+        borderWidth: 1.5,
+        marginBottom: 5,
     },
-    placeholderStyle: {
-        fontSize: 16,
-        color: '#ababab',
-    },
-    selectedTextStyle: {
-        fontSize: 16,
-    },
-    iconStyle: {
-        width: 20,
-        height: 20,
-    },
-    inputSearchStyle: {
-        height: 40,
-        fontSize: 16,
-    },
-    // button
+    placeholderStyle: { fontSize: 14, color: '#94A3B8' },
+    selectedTextStyle: { fontSize: 14, color: '#1E293B', fontWeight: '500' },
     confirmBtn: {
-        height: 45,
-        borderRadius: 8,
+        height: 55,
+        borderRadius: 14,
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: 20,
+        elevation: 4,
+        shadowColor: '#18b5a1',
+        shadowOffset: { width: 0, height: 5 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
     },
-    btnText: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: '500',
-    }
-})
+    btnText: { color: 'white', fontSize: 16, fontWeight: '800', letterSpacing: 1 }
+});
 export default styles;

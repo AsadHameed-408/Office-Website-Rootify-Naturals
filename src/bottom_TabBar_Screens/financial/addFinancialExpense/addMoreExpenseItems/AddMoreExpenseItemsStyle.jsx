@@ -1,114 +1,67 @@
 import { StyleSheet } from 'react-native'
+
 const styles = StyleSheet.create({
-    body: {
-        padding: 20
-    },
-    label: {
-        fontSize: 16,
-        fontWeight: '500',
-    },
+    body: { padding: 20 },
+    label: { fontSize: 14, fontWeight: 'bold', color: '#333', marginBottom: 5 },
     inputContainer: {
         borderColor: '#D9D9D9',
         borderWidth: 1,
         borderRadius: 8,
         height: 45,
         marginVertical: 10,
+        backgroundColor: '#fff'
     },
-    input: {
-        flex: 1,
-        borderRadius: 8,
-        color: 'black',
-        borderColor: '#D9D9D9',
-        borderWidth: 1,
-        borderRadius: 8,
-        width: '100%'
-    },
-    //  dropdown design
-    container: {
-        flex: 1,
-        paddingHorizontal: 4,
-        paddingVertical: 8,
-
-    },
+    input: { flex: 1, paddingHorizontal: 10, color: 'black' },
     dropdown: {
         height: 45,
         borderRadius: 8,
         paddingHorizontal: 8,
-        // backgroundColor: 'white',
         borderColor: '#D9D9D9',
         borderWidth: 1,
-        marginVertical: 10
+        marginVertical: 10,
+        backgroundColor: '#fff'
     },
-    icon: {
-        marginRight: 5,
-    },
-    dropdownlabel: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        left: 22,
-        top: 8,
-        zIndex: 999,
-        paddingHorizontal: 8,
-        fontSize: 14,
-    },
-    placeholderStyle: {
-        fontSize: 16,
-        color: '#ababab',
-    },
-    selectedTextStyle: {
-        fontSize: 16,
-    },
-    iconStyle: {
-        width: 20,
-        height: 20,
-    },
-    inputSearchStyle: {
-        height: 40,
-        fontSize: 16,
-    },
-    // button
+    placeholderStyle: { fontSize: 14, color: '#ababab' },
+    selectedTextStyle: { fontSize: 14, color: '#333' },
     confirmBtn: {
-        height: 45,
-        borderRadius: 8,
+        height: 50,
+        borderRadius: 12,
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: 20,
+        marginTop: 20,
     },
-    btnText: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: '500',
-    },
-    // image picker
+    btnText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
     imagePickerContainer: {
-        flex: 1,
+        height: 180,
         borderColor: '#D9D9D9',
-        borderWidth: 1,
-        height: 200,
-        borderRadius: 8,
+        borderWidth: 2,
+        borderStyle: 'dashed',
+        borderRadius: 12,
         marginBottom: 20,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#f9f9f9'
     },
-    imagePickerText: {
-        color: '#D9D9D9'
-    },
-    // Modal
+    imagePickerText: { color: '#ababab', marginTop: 5 },
     modalContainer: {
         flex: 1,
-        backgroundColor: 'rgba(52, 52, 52, 0.8)',
-        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)',
         justifyContent: 'flex-end',
-    },
-    modalBotomContainer: {
         alignItems: 'center',
-        backgroundColor: 'white',
-        marginBottom: '10',
-        width: '90%',
-        borderWidth: 1,
-        borderColor: '#fff',
-        borderRadius: 7,
-        elevation: 10,
+        paddingBottom: 20
     },
-})
+    modalBottomContainer: {
+        backgroundColor: 'white',
+        width: '90%',
+        borderRadius: 12,
+        marginBottom: 10,
+        overflow: 'hidden'
+    },
+    modalOption: {
+        paddingVertical: 15,
+        alignItems: 'center',
+        width: '100%'
+    },
+    separator: { height: 1, backgroundColor: '#eee', width: '100%' }
+});
 export default styles;

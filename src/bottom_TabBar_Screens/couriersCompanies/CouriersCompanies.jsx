@@ -1,14 +1,15 @@
-import { View, Text, TouchableOpacity, TextInput, FlatList, Image, Switch, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, FlatList, StyleSheet, Linking } from 'react-native'
 import React, { useState } from 'react'
 import BackArrowAppBar from '../../widgets/backarrow_appbar/BackArrowAppBar'
-import styles from './CouriersCompaniesStyle'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
-import { Dropdown } from 'react-native-element-dropdown';
+import styles from './CouriersCompaniesStyle'
 
 const CouriersCompanies = () => {
     const navigation = useNavigation();
+    const [searchQuery, setSearchQuery] = useState('');
+
     const CouriersCompaniesList = [
         {
             id: 1,
@@ -37,96 +38,107 @@ const CouriersCompanies = () => {
             email: 'ops@blueex.pk',
             Website: 'https://www.blueex.com',
         },
-        {
-            id: 4,
-            companyName: 'Trax Online',
-            code: 'trax',
-            contactPerson: 'Hamza Sheikh',
-            phone: '021-343-221-99',
-            email: 'business@trax.pk',
-            Website: 'https://trax.pk',
-        },
-        {
-            id: 5,
-            companyName: 'M&P Logistics',
-            code: 'mnp',
-            contactPerson: 'Fatima Noor',
-            phone: '021-111-202-202',
-            email: 'contact@mulphilog.com',
-            Website: 'https://mulphilog.com',
-        },
     ];
 
-    return (
-        <View style={{ flex: 1 }}>
-            <BackArrowAppBar title={'Courier Companies'} addNavigationRouteName={'add-Couriers'} isAddButtonVisible={true} />
-            {/* search field */}
-            <View style={styles.wrhBodyWrapper}>
-                <View style={styles.wrhSearchRow}>
-                    <View style={styles.wrhInputContainer}>
-                        <TextInput
-                            placeholder="Search store..."
-                            placeholderTextColor="#9e9595"
-                            style={styles.wrhInputField}
-                        />
-                        <View style={styles.wrhVerticalDivider} />
-                        <TouchableOpacity activeOpacity={0.7} onPress={() => {
-                            // setFilterVisible(!filterVisible)
-                        }}>
-                            <MaterialCommunityIcons
-                                name={'filter-outline'}
-                                size={24}
-                                color={'#9e9595'}
-                                style={styles.wrhFilterIcon}
-                            />
-                        </TouchableOpacity>
+    const renderCourierItem = ({ item }) => (
+        <View style={styles.courierCard}>
+            <View style={styles.cardHeader}>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.companyName}>{item.companyName}</Text>
+                    <View style={styles.codeBadge}>
+                        <Text style={styles.codeText}>{item.code.toUpperCase()}</Text>
                     </View>
-
-                    <TouchableOpacity style={styles.wrhAddBtn} activeOpacity={0.8} onPress={() => {
-                        // navigation.navigate('add-Couriers')
-                    }}>
-                        <Feather name={'search'} size={24} color={'#fff'} />
+                </View>
+                <View style={styles.actionButtons}>
+                    <TouchableOpacity style={styles.iconBtnEdit}>
+                        <MaterialCommunityIcons name="pencil" size={18} color="#18b5a1" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.iconBtnDelete}>
+                        <MaterialCommunityIcons name="trash-can-outline" size={18} color="#E74C3C" />
                     </TouchableOpacity>
                 </View>
             </View>
-            {/* store list */}
-            <ScrollView>
-                <View style={{ marginBottom: 40 }}>
-                    <FlatList
-                        data={CouriersCompaniesList}
-                        contentContainerStyle={styles.wrhListContent}
-                        keyExtractor={item => item.id.toString()}
-                        showsVerticalScrollIndicator={false}
-                        scrollEnabled={false}
-                        renderItem={({ item }) => (
-                            <TouchableOpacity activeOpacity={0.9} style={styles.wrhCard}>
-                                <View style={{ flex: 1, paddingLeft: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-                                    <View>
-                                        <Text style={{ fontSize: 16, fontWeight: 'bold', marginBottom: 5 }}>{item.companyName}</Text>
-                                        <View style={{ alignItems: 'center', backgroundColor: '#3577f1cc', paddingHorizontal: 8, borderRadius: 4, alignSelf: 'flex-start', }}>
-                                            <Text style={[styles.wrhListContentText, { fontWeight: 'bold', color: 'white' }]}>{item.code}</Text>
-                                        </View>
-                                        <Text style={[styles.wrhListContentText, { fontWeight: 'bold' }]}>{item.contactPerson}</Text>
-                                        <Text style={[styles.wrhListContentText, { fontWeight: 'bold' }]}>{item.phone}</Text>
-                                        <Text style={[styles.wrhListContentText, { fontWeight: 'bold' }]}>{item.email}</Text>
-                                        <Text style={[styles.wrhListContentText, { fontWeight: 'bold' }]}>{item.Website}</Text>
-                                    </View>
-                                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 15 }}>
-                                        <View style={{ backgroundColor: '#18b5a1', borderRadius: 8, height: 30, width: 30, alignItems: 'center', justifyContent: 'center', }}>
-                                            <MaterialCommunityIcons name={'pencil-outline'} size={20} color={'white'} />
-                                        </View>
-                                        <View style={{ backgroundColor: '#ff0000', borderRadius: 8, height: 30, width: 30, alignItems: 'center', justifyContent: 'center', marginLeft: 10 }}>
-                                            <MaterialCommunityIcons name={'trash-can-outline'} size={20} color={'#fff'} />
-                                        </View>
-                                    </View>
-                                </View>
-                            </TouchableOpacity>
-                        )}
-                    />
+
+            <View style={styles.divider} />
+
+            <View style={styles.cardBody}>
+                {/* Contact Person */}
+                <View style={styles.infoRow}>
+                    <MaterialCommunityIcons name="account-tie" size={18} color="#7F8C8D" />
+                    <Text style={styles.infoTextMain}>{item.contactPerson}</Text>
                 </View>
-            </ScrollView>
+
+                {/* Phone & Email Row */}
+                <View style={styles.contactGrid}>
+                    <TouchableOpacity
+                        style={styles.gridItem}
+                        onPress={() => Linking.openURL(`tel:${item.phone}`)}
+                    >
+                        <MaterialCommunityIcons name="phone" size={16} color="#18b5a1" />
+                        <Text style={styles.gridText}>{item.phone}</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styles.gridItem}
+                        onPress={() => Linking.openURL(`mailto:${item.email}`)}
+                    >
+                        <MaterialCommunityIcons name="email-outline" size={16} color="#18b5a1" />
+                        <Text style={styles.gridText} numberOfLines={1}>{item.email}</Text>
+                    </TouchableOpacity>
+                </View>
+
+                {/* Website */}
+                <TouchableOpacity
+                    style={styles.websiteRow}
+                    onPress={() => Linking.openURL(item.Website)}
+                >
+                    <MaterialCommunityIcons name="web" size={16} color="#3498DB" />
+                    <Text style={styles.websiteText}>{item.Website}</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
+    );
+
+    return (
+        <View style={styles.container}>
+            <BackArrowAppBar
+                title={'Courier Companies'}
+                addNavigationRouteName={'add-Couriers'}
+                isAddButtonVisible={true}
+            />
+
+            {/* Search Section */}
+            <View style={styles.searchWrapper}>
+                <View style={styles.searchBar}>
+                    <TextInput
+                        placeholder="Search by company or code..."
+                        placeholderTextColor="#95A5A6"
+                        style={styles.searchInput}
+                        value={searchQuery}
+                        onChangeText={setSearchQuery}
+                    />
+                    {/* <View style={styles.verticalDivider} />
+                    <TouchableOpacity>
+                        <MaterialCommunityIcons name="filter-variant" size={22} color="#7F8C8D" />
+                    </TouchableOpacity> */}
+                </View>
+                <TouchableOpacity style={styles.searchBtn}>
+                    <Feather name="search" size={22} color="#fff" />
+                </TouchableOpacity>
+            </View>
+
+            <FlatList
+                data={CouriersCompaniesList}
+                renderItem={renderCourierItem}
+                keyExtractor={item => item.id.toString()}
+                contentContainerStyle={styles.listContainer}
+                showsVerticalScrollIndicator={false}
+            />
+            <View style={{ height: 50 }} />
+
         </View>
     )
 }
 
-export default CouriersCompanies
+
+export default CouriersCompanies;

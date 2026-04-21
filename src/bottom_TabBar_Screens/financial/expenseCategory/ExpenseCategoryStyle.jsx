@@ -1,50 +1,16 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    body: {
-        paddingHorizontal: 15
-    },
-    // inputfeild and text
-    heading: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        marginBottom: 8
-    },
-    textLabel: {
-        fontSize: 14,
-        fontWeight: '500',
-    },
-    inputContainer: {
-        borderColor: '#D9D9D9',
-        borderWidth: 1,
-        borderRadius: 8,
-        height: 45,
-        marginVertical: 5,
-        marginTop: 5,
-        backgroundColor: 'white'
-    },
-    input: {
-        flex: 1,
-        borderRadius: 8,
-        color: 'black',
-    },
-    inputFieldplaceholder: {
-        color: '#D9D9D9',
-    },
-    // add and search feild
-    wrhMainContainer: {
-        flex: 1,
-        backgroundColor: '#f8f9fa',
-    },
-    wrhBodyWrapper: {
-        paddingHorizontal: 15,
-    },
-    wrhSearchRow: {
+    wrhMainContainer: { flex: 1, backgroundColor: '#f8f9fa' },
+    headerStyle: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginVertical: 15,
         justifyContent: 'space-between',
+        paddingHorizontal: 15,
+        height: 80,
     },
+    wrhBodyWrapper: { paddingHorizontal: 15 },
+    wrhSearchRow: { flexDirection: 'row', alignItems: 'center', marginVertical: 15 },
     wrhInputContainer: {
         flex: 1,
         flexDirection: 'row',
@@ -55,20 +21,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
     },
-    wrhInputField: {
-        flex: 1,
-        paddingHorizontal: 12,
-        color: '#000',
-    },
-    wrhVerticalDivider: {
-        width: 1,
-        backgroundColor: '#D9D9D9',
-        height: '60%',
-    },
-    wrhFilterIcon: {
-        marginHorizontal: 10,
-    },
-    wrhAddBtn: {
+    wrhInputField: { flex: 1, paddingHorizontal: 12, color: '#000' },
+    wrhVerticalDivider: { width: 1, backgroundColor: '#D9D9D9', height: '60%' },
+    wrhFilterIcon: { marginHorizontal: 10 },
+    wrhSearchBtn: {
         backgroundColor: '#18b5a1',
         borderRadius: 8,
         height: 50,
@@ -77,12 +33,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         elevation: 2,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
     },
-
-    // Warehouse Card
+    // Card
     wrhCard: {
         backgroundColor: '#fff',
         borderRadius: 12,
@@ -93,39 +45,43 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
-        shadowRadius: 4,
-        flexDirection: 'row',
-        alignItems: 'center',
     },
-    wrhListContentText: { color: '#555', marginBottom: 2 },
-    status: {
-        backgroundColor: '#fff',
-        borderRadius: 50,
-        padding: 3,
-        elevation: 3,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        alignItems: 'center',
-        flexDirection: 'row',
-    },
-    // modal
+    cardTitle: { fontSize: 15, fontWeight: 'bold', color: '#333' },
+    cardDivider: { height: 1, backgroundColor: '#eee', marginVertical: 10 },
+    cardRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+    gridLabel: { fontSize: 10, color: '#999', fontWeight: 'bold' },
+    gridValue: { fontSize: 14, fontWeight: 'bold', color: '#18b5a1' },
+    actionRow: { flexDirection: 'row' },
+    editBtn: { backgroundColor: '#18b5a1', borderRadius: 6, padding: 6, marginRight: 8 },
+    deleteBtn: { backgroundColor: '#ff4444', borderRadius: 6, padding: 6 },
+    // Modal
     modalContainer: {
         flex: 1,
-        backgroundColor: 'rgba(52, 52, 52, 0.8)',
-        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)',
         justifyContent: 'center',
+        alignItems: 'center',
     },
-    modalBotomContainer: {
-        backgroundColor: 'white',
-        marginBottom: '10',
-        width: '90%',
+    modalContent: {
+        width: '85%',
+        backgroundColor: '#fff',
+        borderRadius: 15,
+        padding: 20,
+        alignItems: 'center',
+    },
+    modalHeading: { fontSize: 18, fontWeight: 'bold', color: '#333', marginBottom: 15 },
+    textLabel: { fontSize: 13, fontWeight: '600', color: '#666', marginBottom: 5 },
+    inputContainer: {
+        borderColor: '#D9D9D9',
         borderWidth: 1,
-        borderColor: '#fff',
-        borderRadius: 7,
-        elevation: 10,
+        borderRadius: 8,
+        height: 48,
+        backgroundColor: '#fff',
+        paddingHorizontal: 10,
     },
+    input: { flex: 1, color: '#000' },
+    modalActionRow: { flexDirection: 'row', marginTop: 25, width: '100%', justifyContent: 'space-between' },
+    modalBtn: { flex: 1, height: 45, borderRadius: 8, justifyContent: 'center', alignItems: 'center', marginHorizontal: 5 },
+    btnText: { color: '#fff', fontWeight: 'bold', fontSize: 14 },
 })
 
 export default styles

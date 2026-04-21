@@ -1,125 +1,153 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    body: {
-        paddingHorizontal: 15
-    },
-    // add and search feild
-    wrhMainContainer: {
-        flex: 1,
-        backgroundColor: '#f8f9fa',
-    },
-    wrhBodyWrapper: {
-        paddingHorizontal: 15,
-    },
-    wrhSearchRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginVertical: 15,
-        justifyContent: 'space-between',
-    },
-    wrhInputContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        borderColor: '#D9D9D9',
-        borderWidth: 1,
-        borderRadius: 8,
-        height: 50,
-        alignItems: 'center',
-        backgroundColor: '#fff',
-    },
-    wrhInputField: {
-        flex: 1,
-        paddingHorizontal: 12,
-        color: '#000',
-    },
-    wrhVerticalDivider: {
-        width: 1,
-        backgroundColor: '#D9D9D9',
-        height: '60%',
-    },
-    wrhFilterIcon: {
-        marginHorizontal: 10,
-    },
-    wrhAddBtn: {
-        backgroundColor: '#18b5a1',
-        borderRadius: 8,
-        height: 50,
-        width: 50,
-        marginLeft: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-        elevation: 2,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-    },
-    //  dropdown design
     container: {
         flex: 1,
-        paddingHorizontal: 4,
-        paddingVertical: 8,
+        backgroundColor: '#F4F7F6',
     },
-    dropdown: {
-        height: 40,
-        borderRadius: 8,
-        paddingHorizontal: 8,
-        backgroundColor: 'white',
-    },
-    icon: {
-        marginRight: 5,
-    },
-    label: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        left: 22,
-        top: 8,
-        zIndex: 999,
-        paddingHorizontal: 8,
-        fontSize: 14,
-    },
-    placeholderStyle: {
-        fontSize: 16,
-    },
-    selectedTextStyle: {
-        fontSize: 16,
-    },
-    iconStyle: {
-        width: 20,
-        height: 20,
-    },
-    inputSearchStyle: {
-        height: 40,
-        fontSize: 16,
-    },
-    // Warehouse Card
-    wrhCard: {
-        backgroundColor: '#fff',
-        borderRadius: 12,
+    searchWrapper: {
+        flexDirection: 'row',
         padding: 15,
-        marginHorizontal: 15,
-        marginBottom: 12,
-        elevation: 3,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        flexDirection: 'row',
         alignItems: 'center',
     },
-    wrhListContentText: { color: '#555', marginBottom: 2 },
-    status: {
+    searchBar: {
+        flex: 1,
+        flexDirection: 'row',
         backgroundColor: '#fff',
-        borderRadius: 50,
-        padding: 3,
+        height: 50,
+        borderRadius: 12,
+        alignItems: 'center',
+        paddingHorizontal: 15,
+        elevation: 2,
+    },
+    searchInput: {
+        flex: 1,
+        fontSize: 15,
+        color: '#2C3E50',
+    },
+    verticalDivider: {
+        width: 1,
+        height: '50%',
+        backgroundColor: '#ECF0F1',
+        marginHorizontal: 10,
+    },
+    searchBtn: {
+        backgroundColor: '#18b5a1',
+        width: 50,
+        height: 50,
+        borderRadius: 12,
+        marginLeft: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
         elevation: 3,
+    },
+    listContainer: {
+        paddingHorizontal: 15,
+        paddingBottom: 20,
+    },
+    courierCard: {
+        backgroundColor: '#fff',
+        borderRadius: 16,
+        padding: 15,
+        marginBottom: 15,
+        elevation: 4,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        alignItems: 'center',
+        shadowOpacity: 0.08,
+        shadowRadius: 6,
+    },
+    cardHeader: {
         flexDirection: 'row',
-    }
-})
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+    },
+    titleContainer: {
+        flex: 1,
+    },
+    companyName: {
+        fontSize: 16,
+        fontWeight: '800',
+        color: '#2C3E50',
+    },
+    codeBadge: {
+        backgroundColor: '#E8F8F5',
+        paddingHorizontal: 8,
+        paddingVertical: 2,
+        borderRadius: 5,
+        alignSelf: 'flex-start',
+        marginTop: 4,
+    },
+    codeText: {
+        fontSize: 11,
+        fontWeight: 'bold',
+        color: '#18b5a1',
+    },
+    actionButtons: {
+        flexDirection: 'row',
+    },
+    iconBtnEdit: {
+        width: 32,
+        height: 32,
+        borderRadius: 8,
+        backgroundColor: '#E8F8F5',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 10,
+    },
+    iconBtnDelete: {
+        width: 32,
+        height: 32,
+        borderRadius: 8,
+        backgroundColor: '#FDEDEC',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 8,
+    },
+    divider: {
+        height: 1,
+        backgroundColor: '#F0F3F4',
+        marginVertical: 12,
+    },
+    infoRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    infoTextMain: {
+        fontSize: 15,
+        fontWeight: '600',
+        color: '#34495E',
+        marginLeft: 8,
+    },
+    contactGrid: {
+        // flexDirection: 'row',
+        justifyContent: 'space-between',
+        gap: 10,
+        marginBottom: 10,
+    },
+    gridItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flex: 0.48,
+    },
+    gridText: {
+        fontSize: 13,
+        color: '#7F8C8D',
+        marginLeft: 6,
+    },
+    websiteRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#EBF5FB',
+        padding: 8,
+        borderRadius: 8,
+    },
+    websiteText: {
+        fontSize: 12,
+        color: '#3498DB',
+        marginLeft: 8,
+        textDecorationLine: 'underline',
+    },
+});
 
 export default styles

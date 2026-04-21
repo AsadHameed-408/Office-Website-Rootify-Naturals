@@ -1,28 +1,18 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, ScrollView, TouchableOpacity, Image, Modal } from 'react-native';
+import { View, Text, TextInput, ScrollView, TouchableOpacity, StyleSheet, Modal } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Dropdown } from 'react-native-element-dropdown';
-
-// Custom Components & Styles
 import BackArrowAppBar from '../../../widgets/backarrow_appbar/BackArrowAppBar';
-import styles from './AddBrandsStyle';
 import CColors from '../../../constants/CColors';
 import LinearGradient from 'react-native-linear-gradient';
+import styles from './AddBrandsStyle';
 
 const AddBrands = () => {
-
-    // Store/Warehouse States
     const [warehouseValue, setWarehouseValue] = useState(null);
     const [isWarehouseFocus, setWarehouseFocus] = useState(false);
-
-    // Form Inputs
     const [warehouseName, setWarehouseName] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    // Modal Visibility States
     const [isModalVisible, setModalVisible] = useState(false);
 
-
-    // --- 2. Data Lists ---
     const wareHouseList = [
         { label: 'All Warehouses', value: '1' },
         { label: 'EL', value: '2' },
@@ -31,31 +21,37 @@ const AddBrands = () => {
         { label: 'Taimoor Traders', value: '5' },
     ];
 
-
-
     return (
-        <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <View style={styles.mainContainer}>
             <BackArrowAppBar title={'Add Brand'} />
 
-            <ScrollView style={styles.body} showsVerticalScrollIndicator={false}>
-                {/* image picker */}
-                <TouchableOpacity style={styles.imagePickerContainer} activeOpacity={0.7} onPress={() => {
-                    setModalVisible(true)
-                }}>
-                    <MaterialCommunityIcons name={'plus'} size={60} color={'#D9D9D9'} />
-                    <Text style={styles.imagePickerText}>Upload Brand Image</Text>
+            <ScrollView contentContainerStyle={styles.scrollBody} showsVerticalScrollIndicator={false}>
+
+                {/* 1. Image Picker Section */}
+                <TouchableOpacity
+                    style={styles.imagePickerContainer}
+                    activeOpacity={0.7}
+                    onPress={() => setModalVisible(true)}
+                >
+                    <View style={styles.imagePickerContent}>
+                        <MaterialCommunityIcons name={'camera-plus-outline'} size={48} color={'#BDC3C7'} />
+                        <Text style={styles.imagePickerText}>Upload Brand Image</Text>
+                        <Text style={styles.imagePickerSubText}>PNG, JPG (Max 2MB)</Text>
+                    </View>
                 </TouchableOpacity>
-                {/* 2. Shopify Store Dropdown */}
-                <Text style={styles.label}>Warehouse*</Text>
+
+                {/* 2. Warehouse Dropdown */}
+                <Text style={styles.label}>Warehouse <Text style={{ color: 'red' }}>*</Text></Text>
                 <Dropdown
-                    style={[styles.dropdown, isWarehouseFocus && { borderColor: 'blue' }]}
+                    style={[styles.dropdown, isWarehouseFocus && { borderColor: '#1ABC9C' }]}
                     placeholderStyle={styles.placeholderStyle}
                     selectedTextStyle={styles.selectedTextStyle}
+                    itemTextStyle={styles.itemTextStyle}
                     data={wareHouseList}
-                    maxHeight={300}
+                    maxHeight={250}
                     labelField="label"
                     valueField="value"
-                    placeholder={!isWarehouseFocus ? wareHouseList[0].label : wareHouseList[0].label}
+                    placeholder="Select Warehouse"
                     value={warehouseValue}
                     onFocus={() => setWarehouseFocus(true)}
                     onBlur={() => setWarehouseFocus(false)}
@@ -63,100 +59,67 @@ const AddBrands = () => {
                         setWarehouseValue(item.value);
                         setWarehouseFocus(false);
                     }}
+                    renderLeftIcon={() => (
+                        <MaterialCommunityIcons name="office-building-marker-outline" size={20} color="#7F8C8D" style={{ marginRight: 10 }} />
+                    )}
                 />
 
-                {/* 3. Name Input */}
-                <Text style={styles.label}>Name*</Text>
+                {/* 3. Brand Name Input */}
+                <Text style={styles.label}>Brand Name <Text style={{ color: 'red' }}>*</Text></Text>
                 <View style={styles.inputContainer}>
+                    <MaterialCommunityIcons name="tag-outline" size={20} color="#7F8C8D" style={{ marginLeft: 10 }} />
                     <TextInput
                         style={styles.input}
-                        placeholder="Enter Unit Name"
+                        placeholder="e.g. Samsung, Nike"
+                        placeholderTextColor="#BDC3C7"
                         value={warehouseName}
                         onChangeText={setWarehouseName}
                     />
                 </View>
-                <LinearGradient
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 0 }}
-                    colors={CColors.gradient}
-                    style={styles.confirmBtn}
-                    onPress={() => { }}
-                >
-                    <Text style={styles.btnText}>Save Brand</Text>
-                </LinearGradient>
-                {/* Bottom Spacer */}
-                <View style={{ height: 100 }} />
+
+                {/* Save Button */}
+                <TouchableOpacity activeOpacity={0.8} onPress={() => { }}>
+                    <LinearGradient
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 0 }}
+                        colors={CColors.gradient || ['#1ABC9C', '#16A085']}
+                        style={styles.confirmBtn}
+                    >
+                        <Text style={styles.btnText}>Save Brand</Text>
+                    </LinearGradient>
+                </TouchableOpacity>
+
+                <View style={{ height: 50 }} />
             </ScrollView>
-            <View>
-                <Modal
-                    visible={isModalVisible}
-                    transparent={true}
-                    animationType="slide">
-                    <View
-                        style={styles.modalContainer}>
-                        <View
-                            style={styles.modalBotomContainer}>
-                            <TouchableOpacity
-                                activeOpacity={0.4}
-                                onPress={() => { }}
-                                style={{
-                                    width: '95%',
-                                    borderRadius: 0,
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    borderColor: '#ddd',
-                                    borderBottomWidth: 0,
-                                    borderRadius: 5,
-                                    bottom: 0,
-                                    marginBottom: 10,
-                                    marginTop: 10,
-                                }}>
-                                <Text style={{ margin: 10 }}>From Gallery</Text>
+
+            {/* Photo Selection Modal */}
+            <Modal visible={isModalVisible} transparent animationType="fade">
+                <View style={styles.modalOverlay}>
+                    <View style={styles.modalContent}>
+                        <View style={styles.modalOptionsWrapper}>
+                            <TouchableOpacity style={styles.modalOption} onPress={() => { }}>
+                                <MaterialCommunityIcons name="image-multiple" size={22} color="#34495E" />
+                                <Text style={styles.modalOptionText}>Choose from Gallery</Text>
                             </TouchableOpacity>
-                            <View style={{ backgroundColor: '#D9D9D9', height: 1, width: '90%' }} />
-                            <TouchableOpacity
-                                activeOpacity={0.4}
-                                onPress={() => { }}
-                                style={{
-                                    width: '95%',
-                                    borderRadius: 0,
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    borderColor: '#ddd',
-                                    borderBottomWidth: 0,
-                                    borderRadius: 5,
-                                    bottom: 0,
-                                    marginBottom: 10,
-                                    marginTop: 10,
-                                }}>
-                                <Text style={{ margin: 10 }}>Take Picture</Text>
+                            <View style={styles.modalDivider} />
+                            <TouchableOpacity style={styles.modalOption} onPress={() => { }}>
+                                <MaterialCommunityIcons name="camera" size={22} color="#34495E" />
+                                <Text style={styles.modalOptionText}>Take a Photo</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.modalBotomContainer}>
-                            <TouchableOpacity
-                                activeOpacity={0.9}
-                                onPress={() => { setModalVisible(false) }}
-                                style={{
-                                    width: '95%',
-                                    borderRadius: 0,
-                                    alignItems: 'center',
-                                    backgroundColor: 'white',
-                                    justifyContent: 'center',
-                                    borderColor: '#ddd',
-                                    borderBottomWidth: 0,
-                                    borderRadius: 5,
-                                    bottom: 0,
-                                    marginBottom: 10,
-                                    marginTop: 10,
-                                }}>
-                                <Text style={{ margin: 5, fontWeight: 'bold' }}>Cancel</Text>
-                            </TouchableOpacity>
-                        </View>
+
+                        <TouchableOpacity
+                            style={styles.modalCancelBtn}
+                            onPress={() => setModalVisible(false)}
+                        >
+                            <Text style={styles.modalCancelText}>Cancel</Text>
+                        </TouchableOpacity>
                     </View>
-                </Modal>
-            </View>
+                </View>
+            </Modal>
         </View>
     );
 };
 
-export default AddBrands
+
+export default AddBrands;

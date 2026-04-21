@@ -1,23 +1,9 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    body: {
-        paddingHorizontal: 15
-    },
-    // add and search feild
-    wrhMainContainer: {
-        flex: 1,
-        backgroundColor: '#f8f9fa',
-    },
-    wrhBodyWrapper: {
-        paddingHorizontal: 15,
-    },
-    wrhSearchRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginVertical: 15,
-        justifyContent: 'space-between',
-    },
+    mainContainer: { flex: 1, backgroundColor: '#f8f9fa' },
+    wrhBodyWrapper: { paddingHorizontal: 15 },
+    wrhSearchRow: { flexDirection: 'row', alignItems: 'center', marginVertical: 15 },
     wrhInputContainer: {
         flex: 1,
         flexDirection: 'row',
@@ -28,20 +14,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
     },
-    wrhInputField: {
-        flex: 1,
-        paddingHorizontal: 12,
-        color: '#000',
-    },
-    wrhVerticalDivider: {
-        width: 1,
-        backgroundColor: '#D9D9D9',
-        height: '60%',
-    },
-    wrhFilterIcon: {
-        marginHorizontal: 10,
-    },
-    wrhAddBtn: {
+    wrhInputField: { flex: 1, paddingHorizontal: 12, color: '#000' },
+    wrhVerticalDivider: { width: 1, backgroundColor: '#D9D9D9', height: '60%' },
+    wrhFilterIcon: { marginHorizontal: 10 },
+    wrhSearchBtn: {
         backgroundColor: '#18b5a1',
         borderRadius: 8,
         height: 50,
@@ -50,14 +26,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         elevation: 2,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
     },
-    // dropdown
-    container: {
-        flex: 1,
-    },
+    filterRow: { flexDirection: 'row', paddingHorizontal: 15, marginBottom: 10 },
+    dropdownContainer: { flex: 1, marginRight: 8 },
     dropdown: {
         height: 45,
         borderColor: '#D9D9D9',
@@ -65,39 +36,10 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         paddingHorizontal: 8,
         backgroundColor: 'white',
-        marginBottom: 15,
-        marginTop: 5,
-        marginRight: 10,
     },
-    icon: {
-        marginRight: 5,
-    },
-    label: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        left: 22,
-        top: 8,
-        zIndex: 999,
-        paddingHorizontal: 8,
-        fontSize: 14,
-    },
-    placeholderStyle: {
-        fontSize: 16,
-        color: '#D9D9D9'
-    },
-    selectedTextStyle: {
-        fontSize: 16,
-    },
-    iconStyle: {
-        width: 20,
-        height: 20,
-    },
-    inputSearchStyle: {
-        height: 40,
-        fontSize: 16,
-    },
-
-    // Warehouse Card
+    placeholderStyle: { fontSize: 14, color: '#D9D9D9' },
+    selectedTextStyle: { fontSize: 14 },
+    // Card Styles
     wrhCard: {
         backgroundColor: '#fff',
         borderRadius: 12,
@@ -108,23 +50,25 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
-        shadowRadius: 4,
-        flexDirection: 'row',
-        alignItems: 'center',
     },
-    wrhListContentText: { color: '#555', marginBottom: 2 },
-    status: {
-        backgroundColor: '#fff',
-        borderRadius: 50,
-        padding: 3,
-        elevation: 3,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        alignItems: 'center',
-        flexDirection: 'row',
-    }
+    cardHeader: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 12 },
+    cardTitle: { fontSize: 16, fontWeight: 'bold', color: '#333' },
+    cardWarehouse: { fontSize: 13, color: '#666' },
+    typeBadge: { paddingHorizontal: 8, paddingVertical: 4, borderRadius: 6, alignSelf: 'flex-start' },
+    typeText: { fontSize: 11, fontWeight: 'bold', color: '#4f5e7b' },
+    detailsGrid: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 12 },
+    gridItem: { flex: 1 },
+    gridLabel: { fontSize: 10, fontWeight: 'bold', color: '#999', marginBottom: 4 },
+    gridValue: { fontSize: 13, color: '#333' },
+    statusRow: { flexDirection: 'row', alignItems: 'center' },
+    statusText: { fontSize: 11, fontWeight: 'bold' },
+    descriptionBox: { backgroundColor: '#f9f9f9', padding: 8, borderRadius: 8, marginBottom: 12 },
+    descriptionText: { fontSize: 13, color: '#555' },
+    cardFooter: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderTopWidth: 1, borderTopColor: '#eee', paddingTop: 12 },
+    amountText: { fontSize: 15, fontWeight: 'bold', color: '#18b5a1' },
+    actionButtons: { flexDirection: 'row' },
+    editBtn: { backgroundColor: '#18b5a1', borderRadius: 6, height: 32, width: 32, alignItems: 'center', justifyContent: 'center' },
+    deleteBtn: { backgroundColor: '#ff0000', borderRadius: 6, height: 32, width: 32, alignItems: 'center', justifyContent: 'center', marginLeft: 8 },
 })
 
 export default styles

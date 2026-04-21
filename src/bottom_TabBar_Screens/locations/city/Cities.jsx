@@ -1,320 +1,198 @@
-
-
-import { View, Text, TouchableOpacity, TextInput, FlatList, Image, Switch, ScrollView, Modal } from 'react-native'
-import React, { useState } from 'react'
-import BackArrowAppBarStyle from '../../../widgets/backarrow_appbar/BackArrowAppBarStyle'
-import styles from './CitiesStyle'
+import React, { useState, useEffect } from 'react';
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    TextInput,
+    FlatList,
+    Modal,
+    StyleSheet,
+    StatusBar
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
-import { useNavigation } from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient';
-import CColors from '../../../constants/CColors';
 import { Dropdown } from 'react-native-element-dropdown';
+import styles from './CitiesStyle'
+
+// Constants
+import CColors from '../../../constants/CColors';
 
 const Cities = () => {
     const navigation = useNavigation();
-    const [modalVisibility, setModalVisibility] = useState(false)
-    const [filterVisible, setFilterVisible] = useState(false);
-    // city  selection
-    const [cityValue, setCityValue] = useState(null);
-    const [isCityFocus, setCityFocus] = useState(false);
-    // state selection
-    const [stateValue, setStateValue] = useState(null);
-    const [isStateFocus, setStateFocus] = useState(false);
-    const UnitsList = [
-        {
-            id: 1,
-            cityName: 'Ahmedabad',
-            state: 'Gujarat',
-            country: 'India',
-        },
-        {
-            id: 2,
-            cityName: 'Adelaide',
-            state: 'South Australia',
-            country: 'Australia',
-        },
-        {
-            id: 3,
-            cityName: '23234234',
-            state: 'Azad Kashmir',
-            country: 'Pakistan',
-        },
-    ];
-    const cityList = [
-        { value: '1', label: 'Cash' },
-        { value: '2', label: 'Card' },
-        { value: '3', label: 'Online' },
-    ];
-    const stateList = [
-        { value: '1', label: 'Assets' },
-        { value: '2', label: 'Liability' },
-        { value: '3', label: 'Income/Revenue' },
-        { value: '4', label: 'Equity/Capital' },
+
+    // Data States
+    const initialData = [
+        { id: 1, cityName: 'Karachi', state: 'Sindh', country: 'Pakistan' },
+        { id: 2, cityName: 'Lahore', state: 'Punjab', country: 'Pakistan' },
+        { id: 3, cityName: 'Ahmedabad', state: 'Gujarat', country: 'India' },
+        { id: 4, cityName: 'Adelaide', state: 'South Australia', country: 'Australia' },
+        { id: 5, cityName: 'Islamabad', state: 'Federal', country: 'Pakistan' },
     ];
 
+    const [filteredData, setFilteredData] = useState(initialData);
+    const [modalVisibility, setModalVisibility] = useState(false);
+    const [filterVisible, setFilterVisible] = useState(false);
+
+    // Logic States
+    const [searchText, setSearchText] = useState('');
+    const [selectedCountry, setSelectedCountry] = useState(null);
+
+    // Dropdown Data
+    const countryOptions = [
+        { label: 'All Countries', value: null },
+        { label: 'Pakistan', value: 'Pakistan' },
+        { label: 'India', value: 'India' },
+        { label: 'Australia', value: 'Australia' },
+    ];
+
+    // Filter Logic: Jab bhi search ya dropdown change ho, ye chale
+    useEffect(() => {
+        let data = initialData;
+
+        // Search text se filter
+        if (searchText) {
+            data = data.filter(item =>
+                item.cityName.toLowerCase().includes(searchText.toLowerCase())
+            );
+        }
+
+        // Country dropdown se filter
+        if (selectedCountry) {
+            data = data.filter(item => item.country === selectedCountry);
+        }
+
+        setFilteredData(data);
+    }, [searchText, selectedCountry]);
+
+    const renderCityCard = ({ item }) => (
+        <View style={styles.professionalCard}>
+            <View style={styles.cardMainSection}>
+                <View style={styles.iconContainer}>
+                    <MaterialCommunityIcons name="office-building-marker" size={24} color="#18b5a1" />
+                </View>
+                <View style={styles.textContainer}>
+                    <Text style={styles.cityNameLabel}>{item.cityName}</Text>
+                    <View style={styles.locationBadgeRow}>
+                        <View style={styles.subBadge}><Text style={styles.subBadgeText}>{item.state}</Text></View>
+                        <View style={[styles.subBadge, { backgroundColor: '#f0fdf4' }]}><Text style={[styles.subBadgeText, { color: '#16a34a' }]}>{item.country}</Text></View>
+                    </View>
+                </View>
+                <View style={styles.cardActionsColumn}>
+                    <TouchableOpacity style={styles.miniActionBtn}><Feather name="edit" size={16} color="#18b5a1" /></TouchableOpacity>
+                    <TouchableOpacity style={[styles.miniActionBtn, { marginTop: 8 }]}><Feather name="trash-2" size={16} color="#ff4d4d" /></TouchableOpacity>
+                </View>
+            </View>
+        </View>
+    );
 
     return (
-        <View style={{ flex: 1 }}>
-            {/* back arrow  */}
-            <LinearGradient
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                colors={CColors.gradient}
-                style={[BackArrowAppBarStyle.HeaderContainer, {
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    paddingHorizontal: 15
-                }]}
-            >
-                {/* Left Side */}
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <TouchableOpacity
-                        activeOpacity={0.7}
-                        style={BackArrowAppBarStyle.iconButton}
-                        onPress={() => navigation.goBack()}
-                    >
-                        <MaterialIcons name='arrow-back' size={24} color={'#ffffff'} />
-                    </TouchableOpacity>
-                    <Text style={[BackArrowAppBarStyle.headerTitle, { marginLeft: 10 }]}>Cities</Text>
-                </View>
+        <View style={styles.container}>
+            <StatusBar barStyle="light-content" />
 
-                {/* Right Side */}
-                <TouchableOpacity
-                    style={BackArrowAppBarStyle.wrhAddBtn}
-                    activeOpacity={0.8}
-                    onPress={() => { setModalVisibility(!modalVisibility) }}
-                >
-                    <MaterialCommunityIcons name={'plus'} size={24} color={'#fff'} />
+            {/* App Bar */}
+            <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={CColors.gradient || ['#18b5a1', '#0ea5e9']} style={styles.headerGradient}>
+                <View style={styles.headerLeft}>
+                    <TouchableOpacity onPress={() => navigation.goBack()}><MaterialIcons name="arrow-back" size={24} color="#fff" /></TouchableOpacity>
+                    <Text style={styles.headerTitle}>Cities</Text>
+                </View>
+                <TouchableOpacity style={styles.addIconBtn} onPress={() => setModalVisibility(true)}>
+                    <MaterialCommunityIcons name="plus" size={28} color="#fff" />
                 </TouchableOpacity>
             </LinearGradient>
-            {/* search field */}
-            <View style={styles.wrhBodyWrapper}>
-                <View style={styles.wrhSearchRow}>
-                    <View style={styles.wrhInputContainer}>
-                        <TextInput
-                            placeholder="Type here for search..."
-                            placeholderTextColor="#9e9595"
-                            style={styles.wrhInputField}
-                        />
-                        <View style={styles.wrhVerticalDivider} />
-                        <TouchableOpacity activeOpacity={0.7} onPress={() => {
-                        }}>
-                            <MaterialCommunityIcons
-                                name={'filter-outline'}
-                                size={24}
-                                color={'#9e9595'}
-                                style={styles.wrhFilterIcon}
-                                onPress={() => { setFilterVisible(!filterVisible) }}
-                            />
-                        </TouchableOpacity>
-                    </View>
 
-                    <TouchableOpacity style={styles.wrhAddBtn} activeOpacity={0.8} onPress={() => {
-
-                    }}>
-                        <Feather name={'search'} size={24} color={'#fff'} />
+            {/* Search Section */}
+            <View style={styles.searchSection}>
+                <View style={styles.wrhInputContainer}>
+                    <TextInput
+                        placeholder="Search city..."
+                        placeholderTextColor="#9e9595"
+                        style={styles.wrhInputField}
+                        value={searchText}
+                        onChangeText={(text) => setSearchText(text)}
+                    />
+                    <View style={styles.wrhVerticalDivider} />
+                    <TouchableOpacity onPress={() => setFilterVisible(!filterVisible)}>
+                        <MaterialCommunityIcons name={filterVisible ? "filter" : "filter-outline"} size={24} color={filterVisible ? "#18b5a1" : "#9e9595"} style={styles.wrhFilterIcon} />
                     </TouchableOpacity>
                 </View>
+                {/* Search Button (Functional) */}
+                <TouchableOpacity style={styles.searchBtn}>
+                    <Feather name="search" size={22} color="#fff" />
+                </TouchableOpacity>
             </View>
-            {/* dropdown */}
-            {filterVisible &&
-                <View style={styles.wrhBodyWrapper}>
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={{ flex: 1 }}>
-                            <Dropdown
-                                style={[styles.dropdown, isCityFocus && { borderColor: 'blue' }]}
-                                placeholderStyle={styles.placeholderStyle}
-                                selectedTextStyle={styles.selectedTextStyle}
-                                placeholderTextColor={'#D9D9D9'}
-                                inputSearchStyle={styles.inputSearchStyle}
-                                iconStyle={styles.iconStyle}
-                                data={cityList}
-                                maxHeight={300}
-                                labelField="label"
-                                valueField="value"
-                                placeholder={!isCityFocus ? 'City' : ''}
-                                searchPlaceholder="Search..."
-                                value={cityValue}
-                                onFocus={() => setCityFocus(true)}
-                                onBlur={() => setCityFocus(false)}
-                                onChange={item => {
-                                    setCityValue(item.value);
-                                    setCityFocus(false);
-                                }}
-                            />
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Dropdown
-                                style={[styles.dropdown, isCityFocus && { borderColor: 'blue' }]}
-                                placeholderStyle={styles.placeholderStyle}
-                                selectedTextStyle={styles.selectedTextStyle}
-                                placeholderTextColor={'#D9D9D9'}
-                                inputSearchStyle={styles.inputSearchStyle}
-                                iconStyle={styles.iconStyle}
-                                data={cityList}
-                                maxHeight={300}
-                                labelField="label"
-                                valueField="value"
-                                placeholder={!isCityFocus ? 'State' : ''}
-                                searchPlaceholder="Search..."
-                                value={cityValue}
-                                onFocus={() => setCityFocus(true)}
-                                onBlur={() => setCityFocus(false)}
-                                onChange={item => {
-                                    setCityValue(item.value);
-                                    setCityFocus(false);
-                                }}
-                            />
-                        </View>
 
-                    </View>
-                </View>
-            }
-
-            {/* store list */}
-            <ScrollView>
-                <View style={{ marginBottom: 40 }}>
-                    <FlatList
-                        data={UnitsList}
-                        contentContainerStyle={styles.wrhListContent}
-                        keyExtractor={item => item.id.toString()}
-                        showsVerticalScrollIndicator={false}
-                        scrollEnabled={false}
-                        renderItem={({ item }) => (
-                            <TouchableOpacity activeOpacity={1} style={styles.wrhCard}>
-                                <View style={{ flex: 1, paddingLeft: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-                                    <View style={{ flex: 1 }}>
-                                        {/* <Text style={{ fontSize: 16, fontWeight: 'bold', marginBottom: 5 }}>{item.name}</Text> */}
-                                        {/*  middle */}
-                                        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5, justifyContent: 'space-between' }}>
-                                            <Text style={[styles.wrhListContentText, { fontWeight: 'bold' }]}>Name:</Text>
-                                            <Text style={[styles.wrhListContentText,]}>{item.cityName}</Text>
-                                        </View>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5, justifyContent: 'space-between' }}>
-                                            <Text style={[styles.wrhListContentText, { fontWeight: 'bold' }]}>State:</Text>
-                                            <Text style={[styles.wrhListContentText,]}>{item.state}</Text>
-                                        </View>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5, justifyContent: 'space-between' }}>
-                                            <Text style={[styles.wrhListContentText, { fontWeight: 'bold' }]}>Country:</Text>
-                                            <Text style={[styles.wrhListContentText,]}>{item.country}</Text>
-                                        </View>
-                                        {/* divider */}
-                                        <View style={{ flex: 1, height: 1, backgroundColor: '#ccc', marginVertical: 10 }} />
-                                        {/* button */}
-                                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                                            {/* Right */}
-                                            <View style={{ flex: 1, backgroundColor: '#18b5a1', borderRadius: 8, height: 30, width: 30, alignItems: 'center', justifyContent: 'center', }}>
-                                                <MaterialCommunityIcons name={'pencil-outline'} size={20} color={'white'} />
-                                            </View>
-                                            <View style={{ flex: 1, backgroundColor: '#ff0000', borderRadius: 8, height: 30, width: 30, alignItems: 'center', justifyContent: 'center', marginLeft: 10 }}>
-                                                <MaterialCommunityIcons name={'trash-can-outline'} size={20} color={'#fff'} />
-                                            </View>
-                                        </View>
-                                    </View>
-
-                                </View>
-                            </TouchableOpacity>
-                        )}
+            {/* Collapsible Filter Dropdown */}
+            {filterVisible && (
+                <View style={styles.filterDropdownRow}>
+                    <Dropdown
+                        style={styles.dropdownFullWidth}
+                        data={countryOptions}
+                        labelField="label"
+                        valueField="value"
+                        placeholder="Filter by Country"
+                        value={selectedCountry}
+                        onChange={item => setSelectedCountry(item.value)}
+                        placeholderStyle={{ color: '#9e9595', fontSize: 14 }}
                     />
                 </View>
-            </ScrollView>
-            {/* modal */}
-            <View>
-                <Modal
-                    visible={modalVisibility}
-                    transparent={true}
-                    animationType="slide">
-                    <View
-                        style={styles.modalBackGroundContainer}>
-                        <View style={styles.modelContainer}>
-                            <LinearGradient
-                                start={{ x: 0, y: 0 }}
-                                end={{ x: 1, y: 0 }}
-                                colors={CColors.gradient}
-                                style={{ alignItems: 'center', paddingVertical: 10, justifyContent: 'center', borderTopRightRadius: 8, borderTopLeftRadius: 8 }}>
-                                <Text style={[styles.heading, { color: '#fff' }]}>Create City</Text>
-                            </LinearGradient>
-                            <View style={{ marginTop: 10, marginBottom: 15, marginHorizontal: 12 }}>
-                                <Text style={styles.textLabel}>Name*</Text>
-                                <View style={styles.inputContainer}>
-                                    <TextInput
-                                        style={styles.input}
-                                        placeholderTextColor={'#D9D9D9'}
-                                        placeholder=" Account Name"
-                                    />
-                                </View>
-                                <View style={{}}>
-                                    <Text style={styles.textLabel}>Country*</Text>
-                                    <Dropdown
-                                        style={[styles.dropdown, isCityFocus && { borderColor: 'blue' }]}
-                                        placeholderStyle={styles.placeholderStyle}
-                                        selectedTextStyle={styles.selectedTextStyle}
-                                        placeholderTextColor={'#D9D9D9'}
-                                        inputSearchStyle={styles.inputSearchStyle}
-                                        iconStyle={styles.iconStyle}
-                                        data={cityList}
-                                        maxHeight={300}
-                                        labelField="label"
-                                        valueField="value"
-                                        placeholder={!isCityFocus ? 'Account Type' : ''}
-                                        searchPlaceholder="Search..."
-                                        value={cityValue}
-                                        onFocus={() => setCityFocus(true)}
-                                        onBlur={() => setCityFocus(false)}
-                                        onChange={item => {
-                                            setCityValue(item.value);
-                                            setCityFocus(false);
-                                        }}
-                                    />
-                                </View>
-                                <View style={{}}>
-                                    <Text style={styles.textLabel}>State*</Text>
-                                    <Dropdown
-                                        style={[styles.dropdown, isStateFocus && { borderColor: 'blue' }]}
-                                        placeholderStyle={styles.placeholderStyle}
-                                        selectedTextStyle={styles.selectedTextStyle}
-                                        placeholderTextColor={'#D9D9D9'}
-                                        inputSearchStyle={styles.inputSearchStyle}
-                                        iconStyle={styles.iconStyle}
-                                        data={stateList}
-                                        maxHeight={300}
-                                        labelField="label"
-                                        valueField="value"
-                                        placeholder={!isStateFocus ? 'Select Payment' : ''}
-                                        searchPlaceholder="Search..."
-                                        value={stateValue}
-                                        onFocus={() => setStateFocus(true)}
-                                        onBlur={() => setStateFocus(false)}
-                                        onChange={item => {
-                                            setCityValue(item.value);
-                                            setStateFocus(false);
-                                        }}
-                                    />
-                                </View>
-                                <LinearGradient
-                                    start={{ x: 0, y: 0 }}
-                                    end={{ x: 1, y: 0 }}
-                                    colors={CColors.gradient}
-                                    style={{ alignItems: 'center', paddingVertical: 10, justifyContent: 'center', borderRadius: 30, }}>
-                                    <Text style={[{
-                                        color: '#fff', fontSize: 16, fontWeight: 'bold',
-                                    }]}>Add City</Text>
-                                </LinearGradient>
-                                <TouchableOpacity onPress={() => { setModalVisibility(false) }}
-                                    style={styles.closeBtn}>
-                                    <Text style={styles.textLabel}>Close</Text>
+            )}
+
+            <FlatList
+                data={filteredData}
+                renderItem={renderCityCard}
+                keyExtractor={item => item.id.toString()}
+                contentContainerStyle={{ paddingBottom: 20 }}
+                showsVerticalScrollIndicator={false}
+                ListEmptyComponent={<Text style={{ textAlign: 'center', marginTop: 20, color: '#94a3b8' }}>No cities found</Text>}
+            />
+
+            {/* Modal - Same as before but teeno fields k sath */}
+            <Modal visible={modalVisibility} transparent animationType="slide">
+                <View style={styles.modalOverlay}>
+                    <View style={styles.modernModalContent}>
+                        <View style={styles.modalHandle} />
+                        <View style={styles.modalHeaderContainer}>
+                            <Text style={styles.modernModalTitle}>Add New City</Text>
+                        </View>
+                        <View style={styles.modalBody}>
+                            <Text style={styles.newInputLabel}>City Name*</Text>
+                            <View style={styles.iconicInputContainer}>
+                                <MaterialCommunityIcons name="city-variant-outline" size={20} color="#18b5a1" style={styles.inputIcon} />
+                                <TextInput style={styles.iconicInputField} placeholder="City name" />
+                            </View>
+                            <Text style={styles.newInputLabel}>State*</Text>
+                            <View style={styles.iconicInputContainer}>
+                                <MaterialCommunityIcons name="map-marker-outline" size={20} color="#18b5a1" style={styles.inputIcon} />
+                                <TextInput style={styles.iconicInputField} placeholder="State" />
+                            </View>
+                            <Text style={styles.newInputLabel}>Country*</Text>
+                            <Dropdown
+                                style={styles.modernDropdownFull}
+                                data={countryOptions.filter(o => o.value !== null)}
+                                labelField="label"
+                                valueField="value"
+                                placeholder="Select Country"
+                                onChange={() => { }}
+                            />
+                            <View style={styles.modalActionRow}>
+                                <TouchableOpacity style={styles.cancelBtn} onPress={() => setModalVisibility(false)}><Text style={styles.cancelBtnText}>Cancel</Text></TouchableOpacity>
+                                <TouchableOpacity style={styles.confirmBtn} onPress={() => setModalVisibility(false)}>
+                                    <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={CColors.gradient || ['#18b5a1', '#0ea5e9']} style={styles.confirmGradient}>
+                                        <Text style={styles.confirmText}>Save City</Text>
+                                    </LinearGradient>
                                 </TouchableOpacity>
                             </View>
-
                         </View>
                     </View>
-                </Modal>
-            </View>
-        </View >
-    )
-}
+                </View>
+            </Modal>
+        </View>
+    );
+};
 
-export default Cities
+
+
+export default Cities;

@@ -1,19 +1,22 @@
 import { StyleSheet } from "react-native"
 
+
 const styles = StyleSheet.create({
     body: {
         flex: 1,
         padding: 15,
     },
-    // inputfeild and text
     heading: {
         fontSize: 16,
         fontWeight: 'bold',
-        marginBottom: 5
+        marginBottom: 10,
+        marginTop: 10,
+        color: '#333'
     },
     textLabel: {
         fontSize: 14,
         fontWeight: '500',
+        color: '#555'
     },
     inputContainer: {
         borderColor: '#D9D9D9',
@@ -22,17 +25,13 @@ const styles = StyleSheet.create({
         height: 45,
         marginBottom: 15,
         marginTop: 5,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        paddingHorizontal: 10
     },
     input: {
         flex: 1,
-        borderRadius: 8,
         color: 'black',
     },
-    inputFieldplaceholder: {
-        color: '#D9D9D9',
-    },
-    //  dropdown design
     container: {
         flex: 1,
     },
@@ -45,77 +44,59 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         marginBottom: 15,
         marginTop: 5,
-        marginRight: 10.
-
-    },
-    icon: {
-        marginRight: 5,
-    },
-    label: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        left: 22,
-        top: 8,
-        zIndex: 999,
-        paddingHorizontal: 8,
-        fontSize: 14,
     },
     placeholderStyle: {
-        fontSize: 16,
+        fontSize: 14,
         color: '#D9D9D9'
     },
     selectedTextStyle: {
-        fontSize: 16,
+        fontSize: 14,
     },
-    iconStyle: {
-        width: 20,
-        height: 20,
-    },
-    inputSearchStyle: {
-        height: 40,
-        fontSize: 16,
-    },
-    // image style
     imageContainer: {
         borderColor: 'grey',
         borderWidth: 1,
         borderRadius: 8,
         borderStyle: 'dashed',
-        height: 150,
+        height: 120,
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center'
     },
-    // button
     confirmBtn: {
-        height: 45,
+        height: 50,
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: 20,
+        marginTop: 10,
     },
     btnText: {
         color: 'white',
         fontSize: 16,
-        fontWeight: '500',
+        fontWeight: 'bold',
     },
-    // Modal
     modalContainer: {
         flex: 1,
-        backgroundColor: 'rgba(52, 52, 52, 0.8)',
-        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)',
         justifyContent: 'flex-end',
+        alignItems: 'center',
+        paddingBottom: 20
     },
     modalBotomContainer: {
-        alignItems: 'center',
         backgroundColor: 'white',
-        marginBottom: '10',
         width: '90%',
-        borderWidth: 1,
-        borderColor: '#fff',
-        borderRadius: 7,
-        elevation: 10,
+        borderRadius: 12,
+        marginBottom: 10,
+        overflow: 'hidden'
     },
-
-})
+    modalOption: {
+        padding: 15,
+        alignItems: 'center',
+        width: '100%'
+    },
+    separator: {
+        backgroundColor: '#EEE',
+        height: 1,
+        width: '100%'
+    }
+});
 export default styles

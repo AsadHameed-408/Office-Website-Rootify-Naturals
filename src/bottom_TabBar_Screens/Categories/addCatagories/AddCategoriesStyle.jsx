@@ -1,111 +1,138 @@
 import { StyleSheet } from 'react-native'
+
 const styles = StyleSheet.create({
-    body: {
-        padding: 20
+    mainContainer: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
+    scrollBody: {
+        padding: 20,
     },
     label: {
-        fontSize: 16,
-        fontWeight: '500',
+        fontSize: 14,
+        fontWeight: '700',
+        color: '#34495E',
+        marginTop: 15,
+        marginBottom: 8,
     },
     inputContainer: {
-        borderColor: '#D9D9D9',
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderColor: '#E0E0E0',
         borderWidth: 1,
-        borderRadius: 8,
-        height: 45,
-        marginVertical: 10,
+        borderRadius: 10,
+        height: 50,
+        backgroundColor: '#F9FBFC',
     },
     input: {
         flex: 1,
-        borderRadius: 8,
-        color: 'black',
-    },
-    //  dropdown design
-    container: {
-        flex: 1,
-        paddingHorizontal: 4,
-        paddingVertical: 8,
-
+        paddingHorizontal: 10,
+        fontSize: 15,
+        color: '#2C3E50',
     },
     dropdown: {
-        height: 45,
-        borderRadius: 8,
-        paddingHorizontal: 8,
-        // backgroundColor: 'white',
-        borderColor: '#D9D9D9',
+        height: 50,
+        borderRadius: 10,
+        paddingHorizontal: 12,
+        borderColor: '#E0E0E0',
         borderWidth: 1,
-        marginVertical: 10
-    },
-    icon: {
-        marginRight: 5,
-    },
-    dropdownlabel: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        left: 22,
-        top: 8,
-        zIndex: 999,
-        paddingHorizontal: 8,
-        fontSize: 14,
+        backgroundColor: '#F9FBFC',
     },
     placeholderStyle: {
-        fontSize: 16,
-        color: '#ababab',
-        overflow: 'hidden',
+        fontSize: 15,
+        color: '#BDC3C7',
     },
     selectedTextStyle: {
-        fontSize: 16,
+        fontSize: 15,
+        color: '#2C3E50',
     },
-    iconStyle: {
-        width: 20,
-        height: 20,
+    itemTextStyle: {
+        fontSize: 14,
     },
-    inputSearchStyle: {
-        height: 40,
-        fontSize: 16,
+    imagePickerContainer: {
+        height: 180,
+        borderRadius: 15,
+        borderWidth: 1.5,
+        borderColor: '#D9D9D9',
+        borderStyle: 'dashed',
+        backgroundColor: '#FBFBFB',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 10,
     },
-    // button
+    imagePickerContent: {
+        alignItems: 'center',
+    },
+    imagePickerText: {
+        fontSize: 15,
+        fontWeight: '600',
+        color: '#7F8C8D',
+        marginTop: 8,
+    },
+    imagePickerSubText: {
+        fontSize: 12,
+        color: '#BDC3C7',
+        marginTop: 4,
+    },
     confirmBtn: {
-        height: 45,
-        borderRadius: 8,
+        height: 54,
+        borderRadius: 12,
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: 20,
+        marginTop: 30,
+        elevation: 3,
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowOffset: { width: 0, height: 2 },
     },
     btnText: {
         color: 'white',
         fontSize: 16,
-        fontWeight: '500',
+        fontWeight: 'bold',
+        letterSpacing: 0.5,
     },
-    // image picker
-    imagePickerContainer: {
+    modalOverlay: {
         flex: 1,
-        borderColor: '#D9D9D9',
-        borderWidth: 1,
-        height: 200,
-        borderRadius: 8,
-        marginBottom: 20,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        justifyContent: 'flex-end',
+        padding: 15,
+    },
+    modalContent: {
+        width: '100%',
+    },
+    modalOptionsWrapper: {
+        backgroundColor: 'white',
+        borderRadius: 15,
+        overflow: 'hidden',
+        marginBottom: 10,
+    },
+    modalOption: {
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        paddingVertical: 18,
     },
-    imagePickerText: {
-        color: '#D9D9D9'
+    modalOptionText: {
+        fontSize: 17,
+        color: '#34495E',
+        marginLeft: 10,
     },
-    // Modal
-    modalContainer: {
-        flex: 1,
-        backgroundColor: 'rgba(52, 52, 52, 0.8)',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
+    modalDivider: {
+        height: 1,
+        backgroundColor: '#F0F0F0',
+        width: '100%',
     },
-    modalBotomContainer: {
-        alignItems: 'center',
+    modalCancelBtn: {
         backgroundColor: 'white',
-        marginBottom: '10',
-        width: '90%',
-        borderWidth: 1,
-        borderColor: '#fff',
-        borderRadius: 7,
-        elevation: 10,
+        borderRadius: 15,
+        paddingVertical: 18,
+        alignItems: 'center',
+        marginBottom: 20,
     },
-})
+    modalCancelText: {
+        fontSize: 17,
+        fontWeight: '700',
+        color: '#E74C3C',
+    },
+});
 export default styles;

@@ -1,9 +1,6 @@
-
-
-import { View, Text, TouchableOpacity, TextInput, FlatList, Image, Switch, ScrollView, Modal } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, FlatList, ScrollView, Modal, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import BackArrowAppBarStyle from '../../../widgets/backarrow_appbar/BackArrowAppBarStyle'
-import styles from './StateStyleScreen'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
@@ -11,254 +8,172 @@ import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import CColors from '../../../constants/CColors';
 import { Dropdown } from 'react-native-element-dropdown';
+import styles from './StateStyleScreen'
 
 const States = () => {
     const navigation = useNavigation();
     const [modalVisibility, setModalVisibility] = useState(false)
     const [filterVisible, setFilterVisible] = useState(false);
-    // city  selection
-    const [cityValue, setCityValue] = useState(null);
+    const [cityValue, setModalCountryValue] = useState(null);
     const [isCityFocus, setCityFocus] = useState(false);
+
     const UnitsList = [
-        {
-            id: 1,
-            stateName: 'Gujarat',
-            country: 'India',
-        },
-        {
-            id: 2,
-            stateName: 'South Australia',
-            country: 'Australia',
-        },
-        {
-            id: 3,
-            stateName: 'Azad Kashmir',
-            country: 'Pakistan',
-        },
-    ];
-    const cityList = [
-        { value: '1', label: 'Cash' },
-        { value: '2', label: 'Card' },
-        { value: '3', label: 'Online' },
-    ];
-    const stateList = [
-        { value: '1', label: 'Assets' },
-        { value: '2', label: 'Liability' },
-        { value: '3', label: 'Income/Revenue' },
-        { value: '4', label: 'Equity/Capital' },
+        { id: 1, stateName: 'Gujarat', country: 'India' },
+        { id: 2, stateName: 'South Australia', country: 'Australia' },
+        { id: 3, stateName: 'Azad Kashmir', country: 'Pakistan' },
     ];
 
+    const countryList = [
+        { value: '1', label: 'Pakistan' },
+        { value: '2', label: 'India' },
+        { value: '3', label: 'Australia' },
+    ];
+
+    // --- Modern Card Design ---
+    const renderStateCard = ({ item }) => (
+        <View style={styles.modernCard}>
+            <View style={styles.cardAccent} />
+            <View style={styles.cardContent}>
+                <View style={styles.cardInfoSection}>
+                    <View style={styles.iconCircle}>
+                        <MaterialCommunityIcons name="map-marker-radius" size={22} color="#18b5a1" />
+                    </View>
+                    <View style={{ marginLeft: 12 }}>
+                        <Text style={styles.cardStateTitle}>{item.stateName}</Text>
+                        <View style={styles.countryBadge}>
+                            <MaterialCommunityIcons name="earth" size={12} color="#64748b" />
+                            <Text style={styles.countryBadgeText}>{item.country}</Text>
+                        </View>
+                    </View>
+                </View>
+
+                <View style={styles.cardActionsRow}>
+                    <TouchableOpacity style={[styles.miniBtn, { backgroundColor: '#f0fdfa' }]}>
+                        <Feather name="edit-3" size={16} color="#18b5a1" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.miniBtn, { backgroundColor: '#fef2f2', marginLeft: 8 }]}>
+                        <Feather name="trash-2" size={16} color="#ef4444" />
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </View>
+    );
 
     return (
-        <View style={{ flex: 1 }}>
-            {/* back arrow  */}
+        <View style={{ flex: 1, backgroundColor: '#f8fafc' }}>
+            {/* AppBar */}
             <LinearGradient
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                colors={CColors.gradient}
-                style={[BackArrowAppBarStyle.HeaderContainer, {
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    paddingHorizontal: 15
-                }]}
+                start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+                colors={CColors.gradient || ['#18b5a1', '#0ea5e9']}
+                style={[BackArrowAppBarStyle.HeaderContainer, styles.appBarCustom]}
             >
-                {/* Left Side */}
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <TouchableOpacity
-                        activeOpacity={0.7}
-                        style={BackArrowAppBarStyle.iconButton}
-                        onPress={() => navigation.goBack()}
-                    >
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
                         <MaterialIcons name='arrow-back' size={24} color={'#ffffff'} />
                     </TouchableOpacity>
                     <Text style={[BackArrowAppBarStyle.headerTitle, { marginLeft: 10 }]}>States</Text>
                 </View>
-
-                {/* Right Side */}
-                <TouchableOpacity
-                    style={BackArrowAppBarStyle.wrhAddBtn}
-                    activeOpacity={0.8}
-                    onPress={() => { setModalVisibility(!modalVisibility) }}
-                >
-                    <MaterialCommunityIcons name={'plus'} size={24} color={'#fff'} />
+                <TouchableOpacity style={styles.topAddBtn} onPress={() => setModalVisibility(true)}>
+                    <MaterialCommunityIcons name={'plus'} size={26} color={'#fff'} />
                 </TouchableOpacity>
             </LinearGradient>
-            {/* search field */}
-            <View style={styles.wrhBodyWrapper}>
-                <View style={styles.wrhSearchRow}>
-                    <View style={styles.wrhInputContainer}>
-                        <TextInput
-                            placeholder="Type here for search..."
-                            placeholderTextColor="#9e9595"
-                            style={styles.wrhInputField}
+
+            {/* Search Bar */}
+            <View style={styles.searchSectionWrapper}>
+                <View style={styles.searchContainer}>
+                    <TextInput
+                        placeholder="Search state..."
+                        placeholderTextColor="#94a3b8"
+                        style={styles.searchInputField}
+                    />
+                    <View style={styles.vDivider} />
+                    <TouchableOpacity onPress={() => setFilterVisible(!filterVisible)}>
+                        <MaterialCommunityIcons
+                            name={filterVisible ? 'filter' : 'filter-outline'}
+                            size={22} color={filterVisible ? '#18b5a1' : '#94a3b8'}
                         />
-                        <View style={styles.wrhVerticalDivider} />
-                        <TouchableOpacity activeOpacity={0.7} onPress={() => {
-                        }}>
-                            <MaterialCommunityIcons
-                                name={'filter-outline'}
-                                size={24}
-                                color={'#9e9595'}
-                                style={styles.wrhFilterIcon}
-                                onPress={() => { setFilterVisible(!filterVisible) }}
-                            />
-                        </TouchableOpacity>
-                    </View>
-
-                    <TouchableOpacity style={styles.wrhAddBtn} activeOpacity={0.8} onPress={() => {
-
-                    }}>
-                        <Feather name={'search'} size={24} color={'#fff'} />
                     </TouchableOpacity>
                 </View>
+                <TouchableOpacity style={styles.mainSearchBtn}>
+                    <Feather name="search" size={20} color="#fff" />
+                </TouchableOpacity>
             </View>
-            {/* dropdown */}
-            {filterVisible &&
-                <View style={styles.wrhBodyWrapper}>
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={{ flex: 1 }}>
-                            <Dropdown
-                                style={[styles.dropdown, isCityFocus && { borderColor: 'blue' }]}
-                                placeholderStyle={styles.placeholderStyle}
-                                selectedTextStyle={styles.selectedTextStyle}
-                                placeholderTextColor={'#D9D9D9'}
-                                inputSearchStyle={styles.inputSearchStyle}
-                                iconStyle={styles.iconStyle}
-                                data={cityList}
-                                maxHeight={300}
-                                labelField="label"
-                                valueField="value"
-                                placeholder={!isCityFocus ? 'City' : ''}
-                                searchPlaceholder="Search..."
-                                value={cityValue}
-                                onFocus={() => setCityFocus(true)}
-                                onBlur={() => setCityFocus(false)}
-                                onChange={item => {
-                                    setCityValue(item.value);
-                                    setCityFocus(false);
-                                }}
-                            />
-                        </View>
 
-
-                    </View>
-                </View>
-            }
-
-            {/* store list */}
-            <ScrollView>
-                <View style={{ marginBottom: 40 }}>
-                    <FlatList
-                        data={UnitsList}
-                        contentContainerStyle={styles.wrhListContent}
-                        keyExtractor={item => item.id.toString()}
-                        showsVerticalScrollIndicator={false}
-                        scrollEnabled={false}
-                        renderItem={({ item }) => (
-                            <TouchableOpacity activeOpacity={1} style={styles.wrhCard}>
-                                <View style={{ flex: 1, paddingLeft: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-                                    <View style={{ flex: 1 }}>
-
-                                        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5, justifyContent: 'space-between' }}>
-                                            <Text style={[styles.wrhListContentText, { fontWeight: 'bold' }]}>Name:</Text>
-                                            <Text style={[styles.wrhListContentText,]}>{item.stateName}</Text>
-                                        </View>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5, justifyContent: 'space-between' }}>
-                                            <Text style={[styles.wrhListContentText, { fontWeight: 'bold' }]}>Country:</Text>
-                                            <Text style={[styles.wrhListContentText,]}>{item.country}</Text>
-                                        </View>
-                                        {/* divider */}
-                                        <View style={{ flex: 1, height: 1, backgroundColor: '#ccc', marginVertical: 10 }} />
-                                        {/* button */}
-                                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                                            {/* Right */}
-                                            <View style={{ flex: 1, backgroundColor: '#18b5a1', borderRadius: 8, height: 30, width: 30, alignItems: 'center', justifyContent: 'center', }}>
-                                                <MaterialCommunityIcons name={'pencil-outline'} size={20} color={'white'} />
-                                            </View>
-                                            <View style={{ flex: 1, backgroundColor: '#ff0000', borderRadius: 8, height: 30, width: 30, alignItems: 'center', justifyContent: 'center', marginLeft: 10 }}>
-                                                <MaterialCommunityIcons name={'trash-can-outline'} size={20} color={'#fff'} />
-                                            </View>
-                                        </View>
-                                    </View>
-
-                                </View>
-                            </TouchableOpacity>
-                        )}
+            {/* Dropdown Filter */}
+            {filterVisible && (
+                <View style={{ paddingHorizontal: 15, marginBottom: 10 }}>
+                    <Dropdown
+                        style={styles.filterDropdown}
+                        placeholderStyle={styles.dropPlaceholder}
+                        selectedTextStyle={styles.dropSelectedText}
+                        data={countryList}
+                        labelField="label"
+                        valueField="value"
+                        placeholder="Filter by Country"
+                        onChange={() => { }}
                     />
                 </View>
-            </ScrollView>
-            {/* modal */}
-            <View>
-                <Modal
-                    visible={modalVisibility}
-                    transparent={true}
-                    animationType="slide">
-                    <View
-                        style={styles.modalBackGroundContainer}>
-                        <View style={styles.modelContainer}>
-                            <LinearGradient
-                                start={{ x: 0, y: 0 }}
-                                end={{ x: 1, y: 0 }}
-                                colors={CColors.gradient}
-                                style={{ alignItems: 'center', paddingVertical: 10, justifyContent: 'center', borderTopRightRadius: 8, borderTopLeftRadius: 8 }}>
-                                <Text style={[styles.heading, { color: '#fff' }]}>Create States</Text>
-                            </LinearGradient>
-                            <View style={{ marginTop: 10, marginBottom: 15, marginHorizontal: 12 }}>
-                                <Text style={styles.textLabel}>Name*</Text>
-                                <View style={styles.inputContainer}>
-                                    <TextInput
-                                        style={styles.input}
-                                        placeholderTextColor={'#D9D9D9'}
-                                        placeholder=" Account Name"
-                                    />
-                                </View>
-                                <View style={{}}>
-                                    <Text style={styles.textLabel}>Country*</Text>
-                                    <Dropdown
-                                        style={[styles.dropdown, isCityFocus && { borderColor: 'blue' }]}
-                                        placeholderStyle={styles.placeholderStyle}
-                                        selectedTextStyle={styles.selectedTextStyle}
-                                        placeholderTextColor={'#D9D9D9'}
-                                        inputSearchStyle={styles.inputSearchStyle}
-                                        iconStyle={styles.iconStyle}
-                                        data={cityList}
-                                        maxHeight={300}
-                                        labelField="label"
-                                        valueField="value"
-                                        placeholder={!isCityFocus ? 'Account Type' : ''}
-                                        searchPlaceholder="Search..."
-                                        value={cityValue}
-                                        onFocus={() => setCityFocus(true)}
-                                        onBlur={() => setCityFocus(false)}
-                                        onChange={item => {
-                                            setCityValue(item.value);
-                                            setCityFocus(false);
-                                        }}
-                                    />
-                                </View>
+            )}
 
-                                <LinearGradient
-                                    start={{ x: 0, y: 0 }}
-                                    end={{ x: 1, y: 0 }}
-                                    colors={CColors.gradient}
-                                    style={{ alignItems: 'center', paddingVertical: 10, justifyContent: 'center', borderRadius: 30, }}>
-                                    <Text style={[{
-                                        color: '#fff', fontSize: 16, fontWeight: 'bold',
-                                    }]}>Add State</Text>
-                                </LinearGradient>
-                                <TouchableOpacity onPress={() => { setModalVisibility(false) }}
-                                    style={styles.closeBtn}>
-                                    <Text style={styles.textLabel}>Close</Text>
-                                </TouchableOpacity>
+            <FlatList
+                data={UnitsList}
+                renderItem={renderStateCard}
+                keyExtractor={item => item.id.toString()}
+                contentContainerStyle={{ paddingVertical: 10, paddingBottom: 100 }}
+                showsVerticalScrollIndicator={false}
+            />
+
+            {/* --- Refined Modal --- */}
+            <Modal visible={modalVisibility} transparent animationType="fade">
+                <View style={styles.modalOverlay}>
+                    <View style={styles.modernModalBox}>
+                        <LinearGradient
+                            start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+                            colors={CColors.gradient || ['#18b5a1', '#0ea5e9']}
+                            style={styles.modalHeader}
+                        >
+                            <Text style={styles.modalTitleText}>Create New State</Text>
+                        </LinearGradient>
+
+                        <View style={styles.modalPadding}>
+                            <Text style={styles.inputLabel}>STATE NAME</Text>
+                            <View style={styles.modalInputWrapper}>
+                                <Feather name="map" size={18} color="#18b5a1" style={{ marginRight: 10 }} />
+                                <TextInput style={styles.modalTextInput} placeholder="e.g. Sindh" placeholderTextColor="#cbd5e1" />
                             </View>
 
+                            <Text style={styles.inputLabel}>SELECT COUNTRY</Text>
+                            <Dropdown
+                                style={styles.modalDropdown}
+                                data={countryList}
+                                labelField="label"
+                                valueField="value"
+                                placeholder="Choose Country"
+                                placeholderStyle={{ color: '#cbd5e1', fontSize: 14 }}
+                                onChange={item => setModalCountryValue(item.value)}
+                            />
+
+                            <View style={styles.modalActionsRow}>
+                                <TouchableOpacity style={styles.modalCancelBtn} onPress={() => setModalVisibility(false)}>
+                                    <Text style={styles.cancelText}>Discard</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity style={styles.modalSubmitBtn} onPress={() => setModalVisibility(false)}>
+                                    <LinearGradient
+                                        start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+                                        colors={CColors.gradient || ['#18b5a1', '#0ea5e9']}
+                                        style={styles.submitGradient}
+                                    >
+                                        <Text style={styles.submitText}>Save State</Text>
+                                    </LinearGradient>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
-                </Modal>
-            </View>
-        </View >
+                </View>
+            </Modal>
+        </View>
     )
 }
 
-export default States
+export default States;

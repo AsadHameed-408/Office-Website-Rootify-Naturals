@@ -1,179 +1,46 @@
 import { StyleSheet } from "react-native";
 
+
 const styles = StyleSheet.create({
-    body: {
-        paddingHorizontal: 15
-    },
-    // inputfeild and text
-    heading: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        marginBottom: 8
-    },
-    textLabel: {
-        fontSize: 14,
-        fontWeight: '500',
-    },
-    inputContainer: {
-        borderColor: '#D9D9D9',
-        borderWidth: 1,
-        borderRadius: 8,
-        height: 45,
-        marginVertical: 5,
-        marginTop: 5,
-        backgroundColor: 'white'
-    },
-    input: {
-        flex: 1,
-        borderRadius: 8,
-        color: 'black',
-    },
-    inputFieldplaceholder: {
-        color: '#D9D9D9',
-    },
-    // add and search feild
-    wrhMainContainer: {
-        flex: 1,
-        backgroundColor: '#f8f9fa',
-    },
-    wrhBodyWrapper: {
-        paddingHorizontal: 15,
-    },
-    wrhSearchRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginVertical: 15,
-        justifyContent: 'space-between',
-    },
-    wrhInputContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        borderColor: '#D9D9D9',
-        borderWidth: 1,
-        borderRadius: 8,
-        height: 50,
-        alignItems: 'center',
-        backgroundColor: '#fff',
-    },
-    wrhInputField: {
-        flex: 1,
-        paddingHorizontal: 12,
-        color: '#000',
-    },
-    wrhVerticalDivider: {
-        width: 1,
-        backgroundColor: '#D9D9D9',
-        height: '60%',
-    },
-    wrhFilterIcon: {
-        marginHorizontal: 10,
-    },
-    wrhAddBtn: {
-        backgroundColor: '#18b5a1',
-        borderRadius: 8,
-        height: 50,
-        width: 50,
-        marginLeft: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-        elevation: 2,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-    },
-
-    // Warehouse Card
-    wrhCard: {
-        backgroundColor: '#fff',
-        borderRadius: 12,
-        padding: 15,
-        marginHorizontal: 15,
-        marginBottom: 12,
-        elevation: 3,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    wrhListContentText: { color: '#555', marginBottom: 2 },
-    status: {
-        backgroundColor: '#fff',
-        borderRadius: 50,
-        padding: 3,
-        elevation: 3,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        alignItems: 'center',
-        flexDirection: 'row',
-    },
-    //  dropdown design
-    container: {
-        flex: 1,
-    },
-    dropdown: {
-        height: 45,
-        borderColor: '#D9D9D9',
-        borderWidth: 1,
-        borderRadius: 8,
-        paddingHorizontal: 8,
-        backgroundColor: 'white',
-        marginBottom: 15,
-        marginTop: 5,
-        marginRight: 10,
-    },
-    icon: {
-        marginRight: 5,
-    },
-    label: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        left: 22,
-        top: 8,
-        zIndex: 999,
-        paddingHorizontal: 8,
-        fontSize: 14,
-    },
-    placeholderStyle: {
-        fontSize: 16,
-        color: '#D9D9D9'
-    },
-    selectedTextStyle: {
-        fontSize: 16,
-    },
-    iconStyle: {
-        width: 20,
-        height: 20,
-    },
-    inputSearchStyle: {
-        height: 40,
-        fontSize: 16,
-    },
-    // modal
-    modalBackGroundContainer: {
-        flex: 1,
-        backgroundColor: 'rgba(52, 52, 52, 0.8)',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    modelContainer: {
-        width: "90%",
-        backgroundColor: '#fff',
-        borderRadius: 8,
-    },
-    // CLOSE BTN
-    closeBtn: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: 10,
-        marginVertical: 10,
-        borderColor: '#D9D9D9',
-        borderWidth: 1,
-        borderRadius: 30,
-    }
-})
-
+    container: { flex: 1, backgroundColor: '#f8fafc' },
+    headerGradient: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 15, height: 85, paddingTop: 35 },
+    headerLeft: { flexDirection: 'row', alignItems: 'center' },
+    headerTitle: { color: '#fff', fontSize: 18, fontWeight: 'bold', marginLeft: 15 },
+    addIconBtn: { padding: 5 },
+    searchSection: { flexDirection: 'row', padding: 15, alignItems: 'center' },
+    wrhInputContainer: { flex: 1, flexDirection: 'row', backgroundColor: '#fff', borderRadius: 12, height: 50, alignItems: 'center', borderWidth: 1, borderColor: '#e2e8f0' },
+    wrhInputField: { flex: 1, paddingHorizontal: 15, color: '#333' },
+    wrhVerticalDivider: { width: 1, height: '50%', backgroundColor: '#e2e8f0' },
+    wrhFilterIcon: { paddingHorizontal: 12 },
+    searchBtn: { backgroundColor: '#18b5a1', height: 50, width: 50, borderRadius: 12, marginLeft: 10, justifyContent: 'center', alignItems: 'center' },
+    filterDropdownRow: { paddingHorizontal: 15, marginBottom: 15 },
+    dropdownFullWidth: { backgroundColor: '#fff', borderRadius: 10, height: 45, paddingHorizontal: 15, borderWidth: 1, borderColor: '#e2e8f0' },
+    professionalCard: { backgroundColor: '#fff', borderRadius: 16, marginHorizontal: 15, marginBottom: 12, padding: 12, elevation: 2 },
+    cardMainSection: { flexDirection: 'row', alignItems: 'center' },
+    iconContainer: { width: 45, height: 45, borderRadius: 12, backgroundColor: '#f0fdfa', justifyContent: 'center', alignItems: 'center' },
+    textContainer: { flex: 1, marginLeft: 12 },
+    cityNameLabel: { fontSize: 16, fontWeight: '700', color: '#1e293b' },
+    locationBadgeRow: { flexDirection: 'row', marginTop: 4 },
+    subBadge: { backgroundColor: '#f1f5f9', paddingHorizontal: 8, paddingVertical: 2, borderRadius: 6, marginRight: 6 },
+    subBadgeText: { fontSize: 11, color: '#64748b', fontWeight: '600' },
+    cardActionsColumn: { alignItems: 'center' },
+    miniActionBtn: { width: 32, height: 32, borderRadius: 8, backgroundColor: '#f8fafc', justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#f1f5f9' },
+    modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },
+    modernModalContent: { width: '90%', backgroundColor: '#fff', borderRadius: 24, paddingVertical: 20 },
+    modalHandle: { width: 40, height: 4, backgroundColor: '#e2e8f0', borderRadius: 10, alignSelf: 'center', marginBottom: 15 },
+    modalHeaderContainer: { paddingHorizontal: 20, marginBottom: 15 },
+    modernModalTitle: { fontSize: 20, fontWeight: '800', color: '#1e293b' },
+    modalBody: { paddingHorizontal: 20 },
+    newInputLabel: { fontSize: 12, fontWeight: '700', color: '#475569', marginBottom: 6 },
+    iconicInputContainer: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#f8fafc', borderRadius: 12, borderWidth: 1, borderColor: '#e2e8f0', marginBottom: 15, height: 50, paddingHorizontal: 12 },
+    inputIcon: { marginRight: 8 },
+    iconicInputField: { flex: 1, color: '#1e293b' },
+    modernDropdownFull: { backgroundColor: '#f8fafc', borderRadius: 12, borderWidth: 1, borderColor: '#e2e8f0', height: 50, paddingHorizontal: 12, marginBottom: 20 },
+    modalActionRow: { flexDirection: 'row', alignItems: 'center' },
+    cancelBtn: { flex: 1, alignItems: 'center' },
+    cancelBtnText: { color: '#94a3b8', fontWeight: '700' },
+    confirmBtn: { flex: 1.5 },
+    confirmGradient: { paddingVertical: 14, borderRadius: 12, alignItems: 'center' },
+    confirmText: { color: '#fff', fontWeight: '700' }
+});
 export default styles

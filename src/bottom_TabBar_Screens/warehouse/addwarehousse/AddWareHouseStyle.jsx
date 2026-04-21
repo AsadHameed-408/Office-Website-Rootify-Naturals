@@ -1,109 +1,80 @@
 import { StyleSheet } from 'react-native'
+
 const styles = StyleSheet.create({
-    body: {
-        padding: 20
-    },
-    label: {
-        fontSize: 16,
-        fontWeight: '500',
-    },
+    mainContainer: { flex: 1, backgroundColor: '#fff' },
+    body: { paddingHorizontal: 20, paddingTop: 10 },
+    label: { fontSize: 14, fontWeight: '600', color: '#333', marginTop: 10 },
     inputContainer: {
-        borderColor: '#D9D9D9',
+        borderColor: '#E0E0E0',
         borderWidth: 1,
-        borderRadius: 8,
-        height: 45,
-        marginBottom: 15,
+        borderRadius: 10,
+        height: 50,
+        marginTop: 8,
+        paddingHorizontal: 12,
+        backgroundColor: '#fdfdfd',
+        justifyContent: 'center',
     },
-    input: {
-        flex: 1,
-        borderRadius: 8,
-        color: 'black',
-    },
-    //  dropdown design
-    container: {
-        flex: 1,
-        paddingHorizontal: 4,
-        paddingVertical: 8,
-    },
+    input: { flex: 1, color: 'black', fontSize: 15 },
+    multilineInput: { height: 100, paddingVertical: 10 },
+    inputFocus: { borderColor: '#18b5a1' },
     dropdown: {
-        height: 45,
-        borderRadius: 8,
-        paddingHorizontal: 8,
-        // backgroundColor: 'white',
-        borderColor: '#D9D9D9',
+        height: 50,
+        borderRadius: 10,
+        paddingHorizontal: 12,
+        borderColor: '#E0E0E0',
         borderWidth: 1,
-        marginVertical: 10
+        marginTop: 8,
+        marginBottom: 10,
     },
-    icon: {
-        marginRight: 5,
-    },
-    dropdownlabel: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        left: 22,
-        top: 8,
-        zIndex: 999,
-        paddingHorizontal: 8,
-        fontSize: 14,
-    },
-    placeholderStyle: {
-        fontSize: 16,
-        color: '#ababab',
-    },
-    selectedTextStyle: {
-        fontSize: 16,
-    },
-    iconStyle: {
-        width: 20,
-        height: 20,
-    },
-    inputSearchStyle: {
-        height: 40,
-        fontSize: 16,
-    },
-    // button
+    placeholderStyle: { fontSize: 15, color: '#ababab' },
+    selectedTextStyle: { fontSize: 15, color: '#000' },
     confirmBtn: {
-        height: 45,
-        borderRadius: 8,
+        height: 55,
+        borderRadius: 12,
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: 20,
+        marginTop: 30,
+        elevation: 4,
     },
-    btnText: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: '500',
-    },
-    // image picker
+    btnText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
     imagePickerContainer: {
-        flex: 1,
-        borderColor: '#D9D9D9',
+        height: 160,
         borderWidth: 1,
-        height: 200,
-        borderRadius: 8,
+        borderColor: '#E0E0E0',
+        borderRadius: 15,
+        borderStyle: 'dashed',
         marginBottom: 20,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#f9f9f9',
     },
-    imagePickerText: {
-        color: '#D9D9D9'
-    },
-    // Modal
-    modalContainer: {
+    imagePickerText: { color: '#ababab', marginTop: 10, fontSize: 13 },
+    // Modal Styles
+    modalOverlay: {
         flex: 1,
-        backgroundColor: 'rgba(52, 52, 52, 0.8)',
-        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)',
         justifyContent: 'flex-end',
-    },
-    modalBotomContainer: {
         alignItems: 'center',
-        backgroundColor: 'white',
-        marginBottom: '10',
-        width: '90%',
-        borderWidth: 1,
-        borderColor: '#fff',
-        borderRadius: 7,
-        elevation: 10,
     },
-})
+    modalContent: {
+        backgroundColor: 'white',
+        width: '100%',
+        borderTopLeftRadius: 25,
+        borderTopRightRadius: 25,
+        padding: 25,
+        alignItems: 'center',
+    },
+    modalTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 20, color: '#333' },
+    modalOption: {
+        flexDirection: 'row',
+        width: '100%',
+        paddingVertical: 15,
+        alignItems: 'center',
+        gap: 15
+    },
+    optionText: { fontSize: 16, color: '#444' },
+    divider: { height: 1, backgroundColor: '#eee', width: '100%' },
+    cancelBtn: { marginTop: 15, padding: 15, width: '100%', alignItems: 'center' },
+    cancelText: { color: 'red', fontWeight: 'bold', fontSize: 16 },
+});
 export default styles;

@@ -1,148 +1,18 @@
 import { StyleSheet } from "react-native"
-
 const styles = StyleSheet.create({
-    body: {
-        flex: 1,
-        padding: 15,
-    },
-    // inputfeild and text
-    heading: {
-        fontSize: 13,
-        fontWeight: 'bold',
-        marginBottom: 8
-    },
-    textLabel: {
-        fontSize: 14,
-        fontWeight: 'bold',
-    },
-    inputContainer: {
-        borderColor: '#D9D9D9',
-        borderWidth: 1,
-        borderRadius: 8,
-        height: 45,
-        marginBottom: 15,
-        marginTop: 5,
-        backgroundColor: 'white'
-    },
-    input: {
-        flex: 1,
-        borderRadius: 8,
-        color: 'black',
-    },
-    inputFieldplaceholder: {
-        color: '#D9D9D9',
-    },
-    //  dropdown design
-    container: {
-        flex: 1,
-    },
-    dropdown: {
-        height: 45,
-        borderColor: '#D9D9D9',
-        borderWidth: 1,
-        borderRadius: 8,
-        paddingHorizontal: 8,
-        backgroundColor: 'white',
-        marginBottom: 15,
-        marginTop: 5,
-    },
-    icon: {
-        marginRight: 5,
-    },
-    label: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        left: 22,
-        top: 8,
-        zIndex: 999,
-        paddingHorizontal: 8,
-        fontSize: 14,
-    },
-    placeholderStyle: {
-        fontSize: 16,
-        color: '#D9D9D9'
-    },
-    selectedTextStyle: {
-        fontSize: 16,
-    },
-    iconStyle: {
-        width: 20,
-        height: 20,
-    },
-    inputSearchStyle: {
-        height: 40,
-        fontSize: 16,
-    },
-    // delate btn
-    deleteBtnContainer: {
-        backgroundColor: '#ff0000',
-        borderRadius: 8,
-        height: 30,
-        width: 30,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginLeft: 10,
-
-    },
-    //  card container
-    BallanceCard: {
-        flex: 1,
-        backgroundColor: '#fff',
-        borderRadius: 12,
-        padding: 12,
-        elevation: 3,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        height: 100,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    wrhCard: {
-        backgroundColor: '#fff',
-        borderRadius: 12,
-        padding: 12,
-        marginBottom: 12,
-        elevation: 3,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        alignItems: 'center',
-    },
-    wrhListContentText: { color: '#555', marginBottom: 2, fontSize: 12 },
-    cardHeader: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-    cardtextLabel: {
-        fontSize: 10,
-        fontWeight: 'bold',
-    },
-    // Bottom Card
-    bottomCard: {
-        height: 165,
-        backgroundColor: '#fff',
-        borderRadius: 12,
-        padding: 12,
-        elevation: 3,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        position: 'relative',
-    },
-    BottomBtn: {
-        height: 45,
-        backgroundColor: '#18b5a1',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 30,
-        margin: 5,
-    }
-
+    body: { padding: 15 },
+    row: { flexDirection: 'row', gap: 10, marginBottom: 15 },
+    container: { flex: 1 },
+    textLabel: { fontSize: 13, fontWeight: 'bold', color: '#333' },
+    dropdown: { height: 45, borderColor: '#D9D9D9', borderWidth: 1, borderRadius: 8, paddingHorizontal: 10, backgroundColor: 'white', marginTop: 5 },
+    datePickerInput: { height: 45, borderWidth: 1, borderColor: '#D9D9D9', borderRadius: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 10, backgroundColor: 'white', marginTop: 5, marginBottom: 15 },
+    BallanceCard: { flex: 1, backgroundColor: '#fff', borderRadius: 12, padding: 15, elevation: 3, alignItems: 'center' },
+    wrhCard: { backgroundColor: '#fff', borderRadius: 12, padding: 15, marginBottom: 10, elevation: 2 },
+    cardHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
+    cardtextLabel: { fontSize: 10, color: '#999', fontWeight: 'bold' },
+    wrhListContentText: { fontSize: 13, color: '#333' },
+    deleteBtnContainer: { backgroundColor: '#ff4d4d', padding: 6, borderRadius: 6 },
+    bottomCard: { paddingBottom: 40, padding: 15, backgroundColor: '#fff', borderTopWidth: 1, borderColor: '#eee' },
+    BottomBtn: { height: 45, borderRadius: 25, alignItems: 'center', justifyContent: 'center', marginBottom: 10 },
 })
 export default styles

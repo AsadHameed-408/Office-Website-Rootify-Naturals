@@ -60,6 +60,51 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
     },
+    // dropdown
+    body: {
+        paddingHorizontal: 15
+    },
+    container: {
+        flex: 1,
+    },
+    dropdown: {
+        height: 45,
+        borderColor: '#D9D9D9',
+        borderWidth: 1,
+        borderRadius: 8,
+        paddingHorizontal: 8,
+        backgroundColor: 'white',
+        marginBottom: 15,
+        marginTop: 5,
+        marginRight: 10,
+    },
+    icon: {
+        marginRight: 5,
+    },
+    label: {
+        position: 'absolute',
+        backgroundColor: 'white',
+        left: 22,
+        top: 8,
+        zIndex: 999,
+        paddingHorizontal: 8,
+        fontSize: 14,
+    },
+    placeholderStyle: {
+        fontSize: 16,
+        color: '#D9D9D9'
+    },
+    selectedTextStyle: {
+        fontSize: 16,
+    },
+    iconStyle: {
+        width: 20,
+        height: 20,
+    },
+    inputSearchStyle: {
+        height: 40,
+        fontSize: 16,
+    },
     // Warehouse Card
     wrhCard: {
         backgroundColor: '#fff',
