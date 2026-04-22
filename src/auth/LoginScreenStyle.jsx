@@ -1,90 +1,125 @@
 import { StyleSheet } from 'react-native'
-export default StyleSheet.create({
+
+const style = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#f9fafb',
+    },
+    scrollContent: {
+        flexGrow: 1,
+    },
+    headerGradient: {
+        height: 300,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingBottom: 50,
+    },
+    brandContainer: {
+        alignItems: 'center',
+    },
     brandName: {
-        fontSize: 28,
-        fontWeight: '800',
+        fontSize: 32,
+        fontWeight: '900',
         color: '#ffffff',
+        letterSpacing: 1,
     },
     brandTagline: {
         fontSize: 14,
-        color: 'rgba(255, 255, 255, 0.85)',
-        fontWeight: '400',
+        color: 'rgba(255, 255, 255, 0.9)',
+        fontWeight: '500',
+        marginTop: 4,
     },
-    //  login form
+    formArea: {
+        flex: 1,
+        marginTop: -100,
+    },
     loginFormContainer: {
         backgroundColor: '#ffffff',
-        borderRadius: 20,
-        marginHorizontal: 16,
+        borderRadius: 24,
+        marginHorizontal: 20,
         paddingHorizontal: 24,
         paddingTop: 32,
         paddingBottom: 40,
+        // Shadow for iOS
         shadowColor: '#1fbba6',
         shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.08,
-        shadowRadius: 15,
-        elevation: 6,
-        marginTop: -100,
+        shadowOpacity: 0.1,
+        shadowRadius: 20,
+        // Elevation for Android
+        elevation: 10,
     },
     formTitle: {
-        fontSize: 24,
-        fontWeight: '700',
+        fontSize: 22,
+        fontWeight: '800',
         color: '#1f2937',
         textAlign: 'center',
-        marginBottom: 8,
     },
     formSubtitle: {
         fontSize: 14,
         color: '#6b7280',
         textAlign: 'center',
-        marginBottom: 32,
-        lineHeight: 20,
+        marginBottom: 30,
+        marginTop: 4,
     },
-    // Input fields, borrowing styling from dropdowns/search on web screenshot
     inputWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#e5e7eb',
-        borderRadius: 12,
+        borderWidth: 1.5,
+        borderColor: '#f3f4f6',
+        borderRadius: 16,
         paddingHorizontal: 16,
-        marginBottom: 16,
-        height: 56, // Modern comfortable touch target
+        height: 58,
+        backgroundColor: '#f9fafb',
+        borderBottomColor: '#1fbba6'
     },
     inputIcon: {
         marginRight: 12,
-        opacity: 0.9,
     },
     textInput: {
         flex: 1,
         height: '100%',
         color: '#1f2937',
         fontSize: 16,
+        fontWeight: '500',
     },
     forgotPassTouch: {
         alignSelf: 'flex-end',
-        marginBottom: 32,
+        marginBottom: 25,
     },
     forgotPassText: {
         fontSize: 14,
         color: '#138b82',
-        fontWeight: '500',
+        fontWeight: '700',
     },
-    // Main CTA Button
     submitButton: {
-        height: 56,
-        borderRadius: 12,
+        height: 58,
+        borderRadius: 16,
         justifyContent: 'center',
         alignItems: 'center',
         shadowColor: '#1fbba6',
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.25,
-        shadowRadius: 10,
-        elevation: 8,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 5,
     },
     submitButtonText: {
         color: '#ffffff',
-        fontSize: 17,
-        fontWeight: '700',
-        letterSpacing: 0.5,
+        fontSize: 18,
+        fontWeight: '800',
+        letterSpacing: 1,
     },
-})
+    footer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: 30,
+        marginTop: 'auto',
+    },
+    footerText: {
+        color: '#6b7280',
+        marginLeft: 6,
+        fontSize: 13,
+        fontWeight: '500',
+    },
+});
+export default style
